@@ -30,6 +30,7 @@ void Game::Events(){
     while( SDL_PollEvent(&events) != 0){
         if( events.type == SDL_QUIT){
             exit_status = true;
+            SDL_Quit();
         }
     }
 }
