@@ -9,9 +9,9 @@
                 "-g",
                 "main.cpp",
                 "src\\**",
-                "-ID:\\LanguageDev\\C++\\SDL_OPENGL\\include\\SDL2",
-                "-ID:\\LanguageDev\\C++\\SDL_OPENGL\\include",
-                "-LD:\\LanguageDev\\C++\\SDL_OPENGL\\lib\\SDL2",
+                "-Iinclude\\SDL2",
+                "-Iinclude",
+                "-Llib\\SDL2",
                 "-lSDL2main","-lSDL2",
                 "-o",
                 "SDL_OPENGL"

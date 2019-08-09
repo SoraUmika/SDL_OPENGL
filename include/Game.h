@@ -12,6 +12,7 @@ class Game{
         void menu();
         void close();
 
+        void Events();
         void mainLoop();
         
         bool exit_status = false;
@@ -21,6 +22,7 @@ class Game{
 
         SDL_Window* gWindow = NULL;
         SDL_Surface* gWindowSurface = NULL;
+        SDL_Renderer* gRenderer = NULL;
         const int SCREEN_WIDTH = 800;
         const int SCREEN_HEIGHT = 600;
 };
