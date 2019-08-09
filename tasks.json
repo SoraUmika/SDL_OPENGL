@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build hello world",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "main.cpp",
+                "src\\**",
+                "-ID:\\LanguageDev\\C++\\SDL_OPENGL\\include\\SDL2",
+                "-ID:\\LanguageDev\\C++\\SDL_OPENGL\\include",
+                "-LD:\\LanguageDev\\C++\\SDL_OPENGL\\lib\\SDL2",
+                "-lSDL2main","-lSDL2",
+                "-o",
+                "SDL_OPENGL"
+                
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}   
