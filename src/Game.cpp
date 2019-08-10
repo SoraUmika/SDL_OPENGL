@@ -38,12 +38,18 @@ void Game::mainLoop(){
 void Game::events(){
     while( SDL_PollEvent(&event) != 0 ){
         if( event.type == SDL_QUIT){
-            exit_status = true;
-            SDL_Quit();
+            close();
         }
     }
 }
 
 void Game::setRenderDrawColor(SDL_Color color){
     SDL_SetRenderDrawColor(gRenderer, color.r, color.g, color.b, color.a);
+}
+
+void Game::close(){
+    exit_status = true;
+    SDL_DestroyRenderer(gRenderer);
+    SDL_DestroyWindow(gWindow);
+    SDL_Quit();
 }

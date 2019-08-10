@@ -3,14 +3,12 @@
 
 #include <iostream>
 #include <SDL.h>
-
 using namespace std;
 
 class Map{
     public:
-
+        Map();
     private:
-
         int WIDTH;
         int HEIGHT;
 };
