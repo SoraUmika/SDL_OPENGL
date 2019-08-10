@@ -1,5 +1,5 @@
-#ifndef __Map_H_INCLUDED__
-#define __Map_H_INCLUDED__
+#ifndef MAP_H_INCLUDED
+#define MAP_H_INCLUDED
 
 #include <iostream>
 #include <SDL.h>

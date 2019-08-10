@@ -1,5 +1,5 @@
-#ifndef __Game_H_INCLUDED__
-#define __Game_H_INCLUDED__
+#ifndef GAME_H_INCLUDED
+#define GAME_H_INCLUDED
 
 #include <iostream>
 #include <SDL.h>
