@@ -21,16 +21,29 @@ Game::Game(){
     }
 }
 
-void Game::mainLoop(){
-    Events();
+void Game::render(){
+    setRenderDrawColor(chooseColor(WHITE));
+    SDL_RenderClear(gRenderer);
 
+    drawRect(gRenderer, {0, 0, 200, 200}, chooseColor(GREEN));
+
+    SDL_RenderPresent(gRenderer);
 }
 
-void Game::Events(){
-    while( SDL_PollEvent(&events) != 0){
-        if( events.type == SDL_QUIT){
+void Game::mainLoop(){
+    events();
+    render();
+}
+
+void Game::events(){
+    while( SDL_PollEvent(&event) != 0 ){
+        if( event.type == SDL_QUIT){
             exit_status = true;
             SDL_Quit();
         }
     }
+}
+
+void Game::setRenderDrawColor(SDL_Color color){
+    SDL_SetRenderDrawColor(gRenderer, color.r, color.g, color.b, color.a);
 }
