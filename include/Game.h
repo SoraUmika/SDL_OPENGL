@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include <string>
 #include <utility.h>
+#include <Player.h>
 
 using namespace std;
 
