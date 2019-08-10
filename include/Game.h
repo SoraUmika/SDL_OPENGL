@@ -3,35 +3,37 @@
 
 #include <iostream>
 #include <SDL.h>
+#include <SDL_image.h>
 #include <string>
 #include <utility.h>
 #include <Player.h>
+#include <Root.h>
 
 using namespace std;
 
-class Game{
+enum appStatus{inGame, inMainMenu, inSettings, inExit, inPause};
+
+class Game: public Root{
     public:
         Game();
         void menu();
         void close();
 
-        void events();
+        void events(appStatus status);
         void mainLoop();
         
         bool exit_status = false;
 
     private:
         void render();
-        void setRenderDrawColor(SDL_Color color);
 
         SDL_Event event;
-        SDL_Window* gWindow = NULL;
-        SDL_Surface* gWindowSurface = NULL;
-        SDL_Renderer* gRenderer = NULL;
         const int SCREEN_WIDTH = 1280;
         const int SCREEN_HEIGHT = 720;
         
-        SDL_Color renderColor = {255, 0, 0, 255};
+        void initBasicObject();
+
+        Player player;
 };
 
 #endif
