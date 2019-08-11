@@ -12,12 +12,8 @@ enum enumColors{
     RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE
 };
 
-SDL_Color chooseColor(enumColors color);
+SDL_Color chooseColor(enumColors color, Uint8 opacity = 255);
 
-SDL_Texture* loadTexture(SDL_Renderer* renderer, string path);
-
-TTF_Font* loadFont(string path, int fontSize);
-
-void drawRect(SDL_Renderer* renderer, SDL_Rect rect, SDL_Color fillColor);
+TTF_Font* loadFont(std::string path, int fontSize);
 
 #endif

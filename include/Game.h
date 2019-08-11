@@ -4,9 +4,9 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <utility.h>
-#include <Player.h>
 #include <Root.h>
-#include <SDL_ttf.h>
+#include <LTexture.h>
+#include <Player.h>
 
 using namespace std;
 
@@ -25,16 +25,16 @@ class Game: public Root{
         void events(appStatus status);
 
         SDL_Event event;
-    
-        void initBasicObject();
 
         //timing & fps
-        int fpsCount;
-        int timeTicks;
-        SDL_Rect fpsRect;
-        SDL_Texture* fpsTextTexture;
+        int fpsCap = 60;
+        int fpsCount = 0;
+        int timeTicks = 0;
+        SDL_Rect fpsRect = {5, 5, 100, 24};
+        LTexture fpsTextTexture;
         void displayFPS();
         Player player;
+
 };
 
 #endif

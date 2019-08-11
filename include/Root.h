@@ -13,15 +13,14 @@ class Root{
         static SDL_Window* gWindow;
         static SDL_Renderer* gRenderer;
         static SDL_Surface* gWindowSurface;
-
-        static void setRenderDrawColor(SDL_Color color);
-        static SDL_Texture* loadTextTexture(TTF_Font* font, std::string text, SDL_Color color);
-        static TTF_Font* loadFont(std::string path, int fontSize);
-        static SDL_Texture* loadTexture(SDL_Renderer* renderer,std::string path);
         static TTF_Font* defaultFont;
 
-        const int SCREEN_WIDTH = 1280;
-        const int SCREEN_HEIGHT = 720;
+        static void setRenderDrawColor(SDL_Color color);
+
+        static const int SCREEN_WIDTH = 1280;
+        static const int SCREEN_HEIGHT = 720;
+        static const int TILESIZE = 32;
+    
     private:
 };
 

@@ -25,7 +25,7 @@ Game::Game(){
                     std::cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl; 
                 }
                 defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
-                initBasicObject();
+                fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
             }
         }
     }
@@ -36,9 +36,8 @@ void Game::render(){
     SDL_RenderClear(gRenderer);
 
     player.render();
-    //drawRect(gRenderer, {0, 0, 200, 200}, chooseColor(GREEN));
-    displayFPS();
 
+    displayFPS();
     SDL_RenderPresent(gRenderer);
 }
 
@@ -66,19 +65,16 @@ void Game::close(){
     SDL_Quit();
 }
 
-void Game::initBasicObject(){
-    fpsCount = 0;
-    timeTicks = 0;
-    fpsRect = {5, 5, 100, 24};
-    fpsTextTexture = loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
-}
-
 void Game::displayFPS(){
     if((SDL_GetTicks()-timeTicks) >= 1000){
         timeTicks = SDL_GetTicks();
-        fpsTextTexture = loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
+        fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
         fpsCount = 0;
     }
-    SDL_RenderCopy(gRenderer, fpsTextTexture, NULL, &fpsRect);
+
+    SDL_RenderCopy(gRenderer, fpsTextTexture.getTexture(), NULL, &fpsRect);
+
+    SDL_Delay((1000/fpsCap)-1);
     fpsCount++;
 }
+
