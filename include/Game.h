@@ -30,8 +30,11 @@ class Game: public Root{
         SDL_Event event;
         const int SCREEN_WIDTH = 1280;
         const int SCREEN_HEIGHT = 720;
-        
+    
         void initBasicObject();
+
+        int timeTicks = 0;
+        SDL_Texture* fpsTextTexture;
         void displayFPS();
         Player player;
 };

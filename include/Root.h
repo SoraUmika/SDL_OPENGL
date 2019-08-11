@@ -12,8 +12,8 @@ class Root{
         static SDL_Renderer* gRenderer;
         static SDL_Surface* gWindowSurface;
 
-        void setRenderDrawColor(SDL_Color color);
-        SDL_Texture* loadTextTexture(TTF_Font* font, std::string text, SDL_Color color);
+        static void setRenderDrawColor(SDL_Color color);
+        static SDL_Texture* loadTextTexture(TTF_Font* font, std::string text, SDL_Color color);
     private:
 };
 

@@ -39,6 +39,7 @@ void Game::render(){
 void Game::mainLoop(){
     events(inGame);
     render();
+    displayFPS();
 }
 
 void Game::events(appStatus status){
@@ -49,7 +50,6 @@ void Game::events(appStatus status){
         switch(status){
             case inGame:
                 player.events(event);
-
         }
     }
 }
@@ -66,5 +66,10 @@ void Game::initBasicObject(){
 }
 
 void Game::displayFPS(){
-    
+    static int fpsCount = 0;
+    if((SDL_GetTicks()-timeTicks) >= 1000){
+        timeTicks = SDL_GetTicks();
+        cout << SDL_GetTicks() << endl;
+    }
+    fpsCount++;
 }
