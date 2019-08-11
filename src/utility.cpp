@@ -26,30 +26,3 @@ void drawRect(SDL_Renderer* renderer, SDL_Rect rect, SDL_Color fillColor){
     SDL_RenderFillRect(renderer, &rect);
 }
 
-SDL_Texture* loadTexture(SDL_Renderer* renderer,string path){
-    SDL_Texture* newTexture = NULL;
-    SDL_Surface* newSurface = IMG_Load(path.c_str());
-
-    if(newSurface == NULL){
-        cout << "Unable to load image " << path + "! SDL_image Error: " << IMG_GetError() << endl;
-
-    }else{
-        newTexture = SDL_CreateTextureFromSurface(renderer, newSurface);
-        if(newTexture == NULL){
-            cout << "Unable to create texture from " << path << " ! SDL Error: " << SDL_GetError() << endl;;
-        }
-
-        SDL_FreeSurface(newSurface);
-    }
-
-    return newTexture;
-}
-
-TTF_Font* loadFont(string path, int fontSize){
-    TTF_Font* newFont = NULL;
-    newFont = TTF_OpenFont(path.c_str(), fontSize);
-    if(newFont == NULL){
-        cout << "Unable to load font from " << path << " ! SDL Error: " << SDL_GetError() << endl;
-    }
-    return newFont;
-}

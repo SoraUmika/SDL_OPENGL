@@ -1,7 +1,6 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
-#include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <utility.h>
@@ -16,24 +15,23 @@ enum appStatus{inGame, inMainMenu, inSettings, inExit, inPause};
 class Game: public Root{
     public:
         Game();
-        void menu();
-        void close();
-
-        void events(appStatus status);
         void mainLoop();
-        
         bool exit_status = false;
 
     private:
+        void menu();
         void render();
+        void close();
+        void events(appStatus status);
 
         SDL_Event event;
-        const int SCREEN_WIDTH = 1280;
-        const int SCREEN_HEIGHT = 720;
     
         void initBasicObject();
 
-        int timeTicks = 0;
+        //timing & fps
+        int fpsCount;
+        int timeTicks;
+        SDL_Rect fpsRect;
         SDL_Texture* fpsTextTexture;
         void displayFPS();
         Player player;

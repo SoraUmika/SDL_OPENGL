@@ -1,26 +1,31 @@
 #include <Game.h>
 
 Game::Game(){
-
     if(SDL_Init( SDL_INIT_VIDEO ) < 0){
-        cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << endl;
+        std::cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << std::endl;
     }else{
         gWindow = SDL_CreateWindow("SDL_OPENGL", SDL_WINDOWPOS_UNDEFINED, 
         SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
         if(gWindow == NULL){
-            cout << "Windows cannot be intialized! SDL Error: " << SDL_GetError() << endl;
+            std::cout << "Windows cannot be intialized! SDL Error: " << SDL_GetError() << std::endl;
         }else{
             gWindowSurface = SDL_GetWindowSurface( gWindow );
 
             gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
             if(gRenderer == NULL){
-                cout << "SDL render fail to initialize" << SDL_GetError() << endl;
+                std::cout << "SDL render fail to initialize" << SDL_GetError() << std::endl;
             }else{
                 int imgFlags = IMG_INIT_PNG;
                 if( !(IMG_Init(imgFlags) & imgFlags) ){
-                    cout << "SDL_image could not initialize! SDL_iamge error: " << IMG_GetError() << endl;
-                }              
+                    std::cout << "SDL_image could not initialize! SDL_iamge Error: " << IMG_GetError() << std::endl;
+                }     
+
+                if( TTF_Init() == -1){
+                    std::cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl; 
+                }
+                defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
+                initBasicObject();
             }
         }
     }
@@ -32,14 +37,14 @@ void Game::render(){
 
     player.render();
     //drawRect(gRenderer, {0, 0, 200, 200}, chooseColor(GREEN));
+    displayFPS();
 
     SDL_RenderPresent(gRenderer);
 }
 
 void Game::mainLoop(){
-    events(inGame);
     render();
-    displayFPS();
+    events(inGame);
 }
 
 void Game::events(appStatus status){
@@ -62,14 +67,18 @@ void Game::close(){
 }
 
 void Game::initBasicObject(){
-
+    fpsCount = 0;
+    timeTicks = 0;
+    fpsRect = {5, 5, 100, 24};
+    fpsTextTexture = loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
 }
 
 void Game::displayFPS(){
-    static int fpsCount = 0;
     if((SDL_GetTicks()-timeTicks) >= 1000){
         timeTicks = SDL_GetTicks();
-        cout << SDL_GetTicks() << endl;
+        fpsTextTexture = loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
+        fpsCount = 0;
     }
+    SDL_RenderCopy(gRenderer, fpsTextTexture, NULL, &fpsRect);
     fpsCount++;
 }
