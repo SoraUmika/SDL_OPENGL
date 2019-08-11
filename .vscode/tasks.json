@@ -12,7 +12,7 @@
                 "-Iinclude\\SDL2",
                 "-Iinclude",
                 "-Llib\\SDL2",
-                "-lSDL2main","-lSDL2", "-lSDL2_image",
+                "-lSDL2main","-lSDL2", "-lSDL2_image", "-lSDL2_ttf",
                 "-o",
                 "SDL_OPENGL"
                 

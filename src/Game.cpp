@@ -64,3 +64,7 @@ void Game::close(){
 void Game::initBasicObject(){
 
 }
+
+void Game::displayFPS(){
+    
+}

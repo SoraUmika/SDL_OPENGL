@@ -44,3 +44,12 @@ SDL_Texture* loadTexture(SDL_Renderer* renderer,string path){
 
     return newTexture;
 }
+
+TTF_Font* loadFont(string path, int fontSize){
+    TTF_Font* newFont = NULL;
+    newFont = TTF_OpenFont(path.c_str(), fontSize);
+    if(newFont == NULL){
+        cout << "Unable to load font from " << path << " ! SDL Error: " << SDL_GetError() << endl;
+    }
+    return newFont;
+}

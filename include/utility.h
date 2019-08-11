@@ -4,6 +4,8 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
+
 using namespace std;
 
 enum enumColors{
@@ -13,6 +15,8 @@ enum enumColors{
 SDL_Color chooseColor(enumColors color);
 
 SDL_Texture* loadTexture(SDL_Renderer* renderer, string path);
+
+TTF_Font* loadFont(string path, int fontSize);
 
 void drawRect(SDL_Renderer* renderer, SDL_Rect rect, SDL_Color fillColor);
 

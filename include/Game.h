@@ -4,10 +4,10 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <string>
 #include <utility.h>
 #include <Player.h>
 #include <Root.h>
+#include <SDL_ttf.h>
 
 using namespace std;
 
@@ -32,7 +32,7 @@ class Game: public Root{
         const int SCREEN_HEIGHT = 720;
         
         void initBasicObject();
-
+        void displayFPS();
         Player player;
 };
 
