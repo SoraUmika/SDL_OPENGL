@@ -33,6 +33,10 @@ void Map::loadJson(std::string path){
                         newLayer.height = it.value();
                     }else if(it.key() == "name"){
                         newLayer.name = it.value();
+                    }else if(it.key() == "data"){
+                        for(int j=0; j<it.value().size(); j++){
+                            newLayer.data.push_back(it.value()[j]);
+                        }
                     }
                 }
                 layers.push_back(newLayer);

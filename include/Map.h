@@ -14,7 +14,7 @@ struct layer{
     int width = 0;
     int height = 0;
     std::string name;
-
+    std::vector<int> data;
 };
 
 class Map{
