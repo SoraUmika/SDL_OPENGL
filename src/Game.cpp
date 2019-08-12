@@ -36,7 +36,8 @@ void Game::render(){
     SDL_RenderClear(gRenderer);
 
     player.render();
-
+    canvas.drawGrid(TILESIZE);
+    
     displayFPS();
     SDL_RenderPresent(gRenderer);
 }

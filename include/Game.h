@@ -7,6 +7,7 @@
 #include <Root.h>
 #include <LTexture.h>
 #include <Player.h>
+#include <Canvas.h>
 
 using namespace std;
 
@@ -33,6 +34,9 @@ class Game: public Root{
         SDL_Rect fpsRect = {5, 5, 100, 24};
         LTexture fpsTextTexture;
         void displayFPS();
+
+
+        Canvas canvas;
         Player player;
 
 };
