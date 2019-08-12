@@ -13,7 +13,7 @@ void Map::loadJson(std::string path){
     std::ifstream tmpFile(path);
     tmpFile >> mapJsonFormat;
     if(mapJsonFormat.empty()){
-        std::cout << "Unable to load json file from: " << path << std::endl;
+        std::cout << "Unable to load json file from " << path << "! Perhaps Empty?" << std::endl;
     }
 
     for (json::iterator it = mapJsonFormat.begin(); it != mapJsonFormat.end(); ++it) {
@@ -34,7 +34,7 @@ void Map::loadJson(std::string path){
                     }else if(it.key() == "name"){
                         newLayer.name = it.value();
                     }else if(it.key() == "data"){
-                        for(int j=0; j<it.value().size(); j++){
+                        for(int j = 0; j < it.value().size(); j++){
                             newLayer.data.push_back(it.value()[j]);
                         }
                     }
