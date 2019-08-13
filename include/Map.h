@@ -7,6 +7,7 @@
 #include <json.hpp>
 #include <fstream>
 #include <string>
+#include <LTexture.h>
 
 using json = nlohmann::json;
 
@@ -21,7 +22,7 @@ class Map{
     public:
         Map();
         
-        void loadMapFromJson();
+        void loadMapFromJson(std::string path);
         void render();
 
         std::vector<layer> layers;
@@ -30,10 +31,9 @@ class Map{
         int TILEWIDTH;
         int WIDTH;
         int HEIGHT;
-        int convertStringToInt(std::string stringVal);
+        void convertStringToInt(std::string stringVal);
 
         json mapJsonFormat;
-        void loadJson(std::string path);
 
 };
 

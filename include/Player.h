@@ -5,6 +5,7 @@
 #include <Root.h>
 #include <LTexture.h>
 #include <Canvas.h>
+#include <SpriteSheet.h>
 
 class Player: public Root{
     public:
@@ -17,10 +18,10 @@ class Player: public Root{
 
         int getPosX();
     private:
+
         SDL_Rect pRect;
         LTexture pTexture;
         Canvas pCanvas;
-
         int movementSpeed = TILESIZE;
 };
 

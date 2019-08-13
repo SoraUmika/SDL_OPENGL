@@ -8,8 +8,9 @@
 #include <LTexture.h>
 #include <Player.h>
 #include <Canvas.h>
-
-using namespace std;
+#include <Map.h>
+#include <SpriteSheet.h>
+#include <TestClass.h>
 
 enum appStatus{inGame, inMainMenu, inSettings, inExit, inPause};
 
@@ -35,10 +36,15 @@ class Game: public Root{
         LTexture fpsTextTexture;
         void displayFPS();
 
-
+        Map currentMap;
         Canvas canvas;
         Player player;
-
+        
+        //testMembers
+        void initGameObject();
+        SpriteSheet testSheet;
+        LTexture testTexture;
+        SDL_Rect testRect;
 };
 
 #endif

@@ -20,6 +20,8 @@ class Root{
         static const int SCREEN_WIDTH = 1280;
         static const int SCREEN_HEIGHT = 720;
         static const int TILESIZE = 32;
+
+        static bool fullScreenFlag;
     
     private:
 };

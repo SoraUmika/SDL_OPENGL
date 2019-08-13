@@ -1,0 +1,4 @@
+#ifndef TESTCLASS_H_INCLUDED
+#define TESTCLASS_H_INCLUDED
+
+#endif

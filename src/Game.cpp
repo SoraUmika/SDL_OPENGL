@@ -26,9 +26,19 @@ Game::Game(){
                 }
                 defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
                 fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
+                initGameObject();
             }
         }
     }
+}
+
+void Game::initGameObject(){
+    currentMap.loadMapFromJson("assets/maps/testMap.json");
+    testSheet.loadSheet("assets\\spriteSheet\\Dungeon_Tileset.png", 16);
+    testTexture.loadTextureFromFile("assets\\spriteSheet\\Dungeon_Tileset.png");
+    testRect = {0, 0, 300, 400};
+
+    SDL_RenderSetScale(gRenderer, 4, 4);
 }
 
 void Game::render(){
@@ -37,7 +47,10 @@ void Game::render(){
 
     player.render();
     canvas.drawGrid(TILESIZE);
-    
+
+    //SDL_RenderCopyEx(gRenderer, testTexture.getTexture(), NULL, NULL, 0.0, NULL, SDL_FLIP_NONE);
+    testTexture.render(0, 0, NULL, 0.0, NULL, SDL_FLIP_NONE);
+
     displayFPS();
     SDL_RenderPresent(gRenderer);
 }
@@ -51,6 +64,23 @@ void Game::events(appStatus status){
     while( SDL_PollEvent(&event) != 0 ){
         if( event.type == SDL_QUIT){
             close();
+        }
+
+        if(event.type == SDL_KEYDOWN){
+            switch(event.key.keysym.sym){
+                case SDLK_F11:
+                    if(!fullScreenFlag){
+                        SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+                        fullScreenFlag = true;
+                    }else{
+                        SDL_SetWindowFullscreen(gWindow, 0);
+                        fullScreenFlag = false;
+                    }
+                    break;
+                case SDLK_F4 && SDLK_LALT:
+                    close();
+                    break;
+            }
         }
         switch(status){
             case inGame:

@@ -5,6 +5,7 @@ SDL_Renderer* Root::gRenderer = NULL;
 SDL_Surface* Root::gWindowSurface = NULL;
 TTF_Font* Root::defaultFont = NULL;
 
+bool Root::fullScreenFlag = false;
 
 Root::Root(){
 

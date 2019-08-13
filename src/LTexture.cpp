@@ -12,7 +12,7 @@ void LTexture::loadTextTexture(TTF_Font* font, std::string text, SDL_Color color
     mTexture =  newTextTexture;
 }
 
-void LTexture::loadTexture(std::string path){
+void LTexture::loadTextureFromFile(std::string path){
     SDL_Texture* newTexture = NULL;
     SDL_Surface* newSurface = IMG_Load(path.c_str());
 
@@ -20,6 +20,8 @@ void LTexture::loadTexture(std::string path){
         std::cout << "Unable to load image " << path + "! SDL_image Error: " << IMG_GetError() << std::endl;
 
     }else{
+        mWidth = newSurface->w;
+        mHeight = newSurface->h;
         newTexture = SDL_CreateTextureFromSurface(gRenderer, newSurface);
         if(newTexture == NULL){
             std::cout << "Unable to create texture from " << path << " ! SDL Error: " << SDL_GetError() << std::endl;;
