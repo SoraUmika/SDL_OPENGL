@@ -9,14 +9,14 @@
 
 class Player: public Root{
     public:
-        Player(SDL_Rect Rect = {0, 0, TILESIZE, TILESIZE*2});
+        Player(SDL_Rect Rect = {0, 0, TILESIZE/2, TILESIZE});
         
         void canvas();
         void render();
         void events(SDL_Event &event);
 
 
-        int getPosX();
+        SDL_Rect* getRectPtr();
     private:
 
         SDL_Rect pRect;

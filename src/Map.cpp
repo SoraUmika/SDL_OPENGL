@@ -47,16 +47,16 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
 }
 
 void Map::setRenderPos(int x, int y){
-    renderPos_x = x;
-    renderPos_y = y;
+    mapPos_x = x;
+    mapPos_y = y;
 }
 
 void Map::render(){
     //tileSet.sheetTexture.render(i*TILEWIDTH, j*TILEWIDTH, {});
     static bool flag = false;
     for(int layerCount=0; layerCount<layers.size(); layerCount++){
-            pos_x_counter = renderPos_x;
-            pos_y_counter = renderPos_y;
+            pos_x_counter = mapPos_x;
+            pos_y_counter = mapPos_y;
         for(int tileCount=0; tileCount<layers.at(layerCount).data.size(); tileCount++){
             tileIndex = layers.at(layerCount).data[tileCount] - 1;
             if(tileIndex != -1){
@@ -70,12 +70,17 @@ void Map::render(){
 
 
             pos_x_counter+=TILEWIDTH;
-            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + renderPos_x){
-                pos_x_counter = renderPos_x;
+            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + mapPos_x){
+                pos_x_counter = mapPos_x;
                 pos_y_counter += TILEWIDTH;
             }
             
         }
     }
     flag = true;
+}
+
+void Map::setPlayerSpawnPoint(SDL_Rect *playerRect){
+    playerRect->x = mapPos_x;
+    playerRect->y = mapPos_y;
 }

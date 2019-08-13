@@ -27,10 +27,10 @@ void Player::events(SDL_Event &event){
     }
 }
 
-void Player::canvas(){
-    pCanvas.drawRect(pRect, BLUE);
+SDL_Rect* Player::getRectPtr(){
+    return &pRect;
 }
 
-int Player::getPosX(){
-    return 0;
+void Player::canvas(){
+    pCanvas.drawRect(pRect, BLUE);
 }

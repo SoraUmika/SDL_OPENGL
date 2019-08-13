@@ -36,7 +36,7 @@ void Game::initGameObject(){
 
     currentMap.loadMapFromJson("assets/maps/testMap.json", "assets\\maps\\Tile_Set\\Dungeon_Tileset.png");
     testRect = {0, 0, 300, 400};
-
+    currentMap.setPlayerSpawnPoint(player.getRectPtr());
 }
 
 void Game::render(){
@@ -48,7 +48,6 @@ void Game::render(){
     //SDL_RenderCopyEx(gRenderer, testTexture.getTexture(), NULL, NULL, 0.0, NULL, SDL_FLIP_NONE);
     SDL_RenderSetScale(gRenderer, 4, 4);
     currentMap.render();
-    SDL_RenderSetScale(gRenderer, 2, 2);
     player.render();
     SDL_RenderSetScale(gRenderer, 1, 1);
 

@@ -25,7 +25,7 @@ class Map{
         void loadMapFromJson(std::string jsonPath, std::string tileImgPath);
         void render();
         void setRenderPos(int x, int y);
-
+        void setPlayerSpawnPoint(SDL_Rect *playerRect);
         std::vector<layer> layers;
     private:
     
@@ -39,8 +39,8 @@ class Map{
 
         //render
         int tileIndex;
-        int renderPos_x = 50;
-        int renderPos_y = 50;
+        int mapPos_x = 50;
+        int mapPos_y = 50;
         int pos_x_counter;
         int pos_y_counter;
 
