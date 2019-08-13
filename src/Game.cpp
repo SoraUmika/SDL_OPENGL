@@ -24,8 +24,6 @@ Game::Game(){
                 if( TTF_Init() == -1){
                     std::cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl; 
                 }
-                defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
-                fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
                 initGameObject();
             }
         }
@@ -33,6 +31,9 @@ Game::Game(){
 }
 
 void Game::initGameObject(){
+    defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
+    fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
+
     currentMap.loadMapFromJson("assets/maps/testMap.json");
     testSheet.loadSheet("assets\\spriteSheet\\Dungeon_Tileset.png", 16);
     testTexture.loadTextureFromFile("assets\\spriteSheet\\Dungeon_Tileset.png");
