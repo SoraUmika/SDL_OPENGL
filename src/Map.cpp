@@ -52,7 +52,6 @@ void Map::setRenderPos(int x, int y){
 }
 
 void Map::render(){
-    //tileSet.sheetTexture.render(i*TILEWIDTH, j*TILEWIDTH, {});
     static bool flag = false;
     for(int layerCount=0; layerCount<layers.size(); layerCount++){
             pos_x_counter = mapPos_x;
@@ -63,8 +62,6 @@ void Map::render(){
                 renderClip = {tileSet.tilePos.at(tileIndex).x, tileSet.tilePos.at(tileIndex).y, TILEWIDTH, TILEWIDTH};
                 tileSet.sheetTexture.render(pos_x_counter, pos_y_counter, &renderClip);
                 if(!flag){
-                    std::cout << "tile index " << tileIndex << " rendererd at " << pos_x_counter << ", " << pos_y_counter
-                    << ". RectPos: " << renderClip.x << ", " << renderClip.h << std::endl;
                 }
             }
 

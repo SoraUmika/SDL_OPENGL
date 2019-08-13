@@ -39,8 +39,8 @@ class Map{
 
         //render
         int tileIndex;
-        int mapPos_x = 50;
-        int mapPos_y = 50;
+        int mapPos_x = 0;
+        int mapPos_y = 0;
         int pos_x_counter;
         int pos_y_counter;
 

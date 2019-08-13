@@ -9,7 +9,7 @@
 
 class Player: public Root{
     public:
-        Player(SDL_Rect Rect = {0, 0, TILESIZE/2, TILESIZE});
+        Player(SDL_Rect Rect = {0, 0, TILESIZE, TILESIZE*2});
         
         void canvas();
         void render();
