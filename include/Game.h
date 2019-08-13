@@ -42,7 +42,6 @@ class Game: public Root{
         
         //testMembers
         void initGameObject();
-        SpriteSheet testSheet;
         LTexture testTexture;
         SDL_Rect testRect;
 };

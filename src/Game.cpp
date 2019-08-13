@@ -34,23 +34,23 @@ void Game::initGameObject(){
     defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
     fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
 
-    currentMap.loadMapFromJson("assets/maps/testMap.json");
-    testSheet.loadSheet("assets\\spriteSheet\\Dungeon_Tileset.png", 16);
-    testTexture.loadTextureFromFile("assets\\spriteSheet\\Dungeon_Tileset.png");
+    currentMap.loadMapFromJson("assets/maps/testMap.json", "assets\\maps\\Tile_Set\\Dungeon_Tileset.png");
     testRect = {0, 0, 300, 400};
 
-    SDL_RenderSetScale(gRenderer, 4, 4);
 }
 
 void Game::render(){
     setRenderDrawColor(chooseColor(WHITE));
     SDL_RenderClear(gRenderer);
 
-    player.render();
     canvas.drawGrid(TILESIZE);
 
     //SDL_RenderCopyEx(gRenderer, testTexture.getTexture(), NULL, NULL, 0.0, NULL, SDL_FLIP_NONE);
-    testTexture.render(0, 0, NULL, 0.0, NULL, SDL_FLIP_NONE);
+    SDL_RenderSetScale(gRenderer, 4, 4);
+    currentMap.render();
+    SDL_RenderSetScale(gRenderer, 2, 2);
+    player.render();
+    SDL_RenderSetScale(gRenderer, 1, 1);
 
     displayFPS();
     SDL_RenderPresent(gRenderer);

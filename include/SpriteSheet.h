@@ -21,9 +21,9 @@ class SpriteSheet{
         
         int sheetSize_x;
         int sheetSize_y;
-        void parseSheet();
     private:
         int tileSize;
+        void parseSheet();
 
 };
 
