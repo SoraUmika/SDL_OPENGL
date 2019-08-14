@@ -11,7 +11,7 @@ void Canvas::drawGrid(int gridSize, enumColors color){
     }
 }
 
-void Canvas::drawRect(SDL_Rect rect, enumColors color){
+void Canvas::drawRect(SDL_Rect *rect, enumColors color){
     setRenderDrawColor(chooseColor(color));
-    SDL_RenderFillRect(gRenderer, &rect);
+    SDL_RenderFillRect(gRenderer, rect);
 }

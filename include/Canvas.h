@@ -9,7 +9,7 @@
 class Canvas: public Root{
     public:
         void drawGrid(int gridSize, enumColors color=BLACK);
-        void drawRect(SDL_Rect rect, enumColors Color=GREEN);
+        void drawRect(SDL_Rect *rect, enumColors Color=GREEN);
     private:
 };
 

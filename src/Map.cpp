@@ -4,11 +4,6 @@ Map::Map(){
     
 }
 
-void Map::convertStringToInt(std::string stringVal){
-
-}
-
-
 void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
     std::ifstream tmpFile(jsonPath);
     tmpFile >> mapJsonFormat;
@@ -40,22 +35,21 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
                     }
                     layers.push_back(newLayer);
                 }
-            }
+            }       
         }
+        mapRect = {0, 0, WIDTH*TILEWIDTH, HEIGHT*TILEWIDTH};
+        tmpFile.close();
+        mapJsonFormat.clear();
+
     }
     tileSet.loadSheet(tileImgPath, TILEWIDTH);
-}
-
-void Map::setRenderPos(int x, int y){
-    mapPos_x = x;
-    mapPos_y = y;
 }
 
 void Map::render(){
     static bool flag = false;
     for(int layerCount=0; layerCount<layers.size(); layerCount++){
-            pos_x_counter = mapPos_x;
-            pos_y_counter = mapPos_y;
+            pos_x_counter = mapRect.x;
+            pos_y_counter = mapRect.y;
         for(int tileCount=0; tileCount<layers.at(layerCount).data.size(); tileCount++){
             tileIndex = layers.at(layerCount).data[tileCount] - 1;
             if(tileIndex != -1){
@@ -67,8 +61,8 @@ void Map::render(){
 
 
             pos_x_counter+=TILEWIDTH;
-            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + mapPos_x){
-                pos_x_counter = mapPos_x;
+            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + mapRect.x){
+                pos_x_counter = mapRect.x;
                 pos_y_counter += TILEWIDTH;
             }
             
@@ -77,7 +71,20 @@ void Map::render(){
     flag = true;
 }
 
-void Map::setPlayerSpawnPoint(SDL_Rect *playerRect){
-    playerRect->x = mapPos_x;
-    playerRect->y = mapPos_y;
+void Map::setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY){
+    playerRect->x = mapRect.x + toX;
+    playerRect->y = mapRect.y + toY;
+}
+
+void Map::setMapPos(int x, int y){
+    mapRect.x = x;
+    mapRect.y = y;
+}
+
+SDL_Rect Map::getMapRect(){
+    return mapRect;
+}
+
+SDL_Rect* Map::getMapRectPtr(){
+    return &mapRect;
 }

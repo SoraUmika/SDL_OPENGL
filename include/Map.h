@@ -24,23 +24,23 @@ class Map{
         
         void loadMapFromJson(std::string jsonPath, std::string tileImgPath);
         void render();
-        void setRenderPos(int x, int y);
-        void setPlayerSpawnPoint(SDL_Rect *playerRect);
+        void setMapPos(int x, int y);
+        void setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY);
+        SDL_Rect getMapRect();
+        SDL_Rect *getMapRectPtr();
         std::vector<layer> layers;
     private:
     
         int TILEWIDTH;
-        int WIDTH;
-        int HEIGHT;
-        void convertStringToInt(std::string stringVal);
-
+        int WIDTH; //tile_width
+        int HEIGHT;  //tile_height
+        
+        SDL_Rect mapRect; //mapRect in pixels
         json mapJsonFormat;
         SpriteSheet tileSet;
 
         //render
         int tileIndex;
-        int mapPos_x = 0;
-        int mapPos_y = 0;
         int pos_x_counter;
         int pos_y_counter;
 

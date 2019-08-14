@@ -10,6 +10,7 @@
 #include <Canvas.h>
 #include <Map.h>
 #include <SpriteSheet.h>
+#include <Camera.h>
 #include <TestClass.h>
 
 enum appStatus{inGame, inMainMenu, inSettings, inExit, inPause};
@@ -24,8 +25,8 @@ class Game: public Root{
         void menu();
         void render();
         void close();
-        void events(appStatus status);
-
+        void keyEvents(appStatus status);
+        void cameraEvents();
         SDL_Event event;
 
         //timing & fps
@@ -39,7 +40,7 @@ class Game: public Root{
         Map currentMap;
         Canvas canvas;
         Player player;
-        
+        Camera camera;
         //testMembers
         void initGameObject();
         LTexture testTexture;

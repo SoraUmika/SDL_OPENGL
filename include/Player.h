@@ -15,14 +15,18 @@ class Player: public Root{
         void render();
         void events(SDL_Event &event);
 
-
+        
         SDL_Rect* getRectPtr();
+        //SDL_Rect* getRenderRectPtr();
+        SDL_Rect getRect();
     private:
 
         SDL_Rect pRect;
+        //SDL_Rect rRect;
         LTexture pTexture;
         Canvas pCanvas;
         int movementSpeed = TILESIZE;
+
 };
 
 #endif

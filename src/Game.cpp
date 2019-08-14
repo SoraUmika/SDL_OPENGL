@@ -35,14 +35,14 @@ void Game::initGameObject(){
     fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
 
     currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
-    currentMap.setPlayerSpawnPoint(player.getRectPtr());
+    currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*5, TILESIZE*12);
+
+    camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
 }
 
 void Game::render(){
     setRenderDrawColor(chooseColor(WHITE));
     SDL_RenderClear(gRenderer);
-
-    canvas.drawGrid(TILESIZE);
 
     currentMap.render();
     player.render();
@@ -53,10 +53,11 @@ void Game::render(){
 
 void Game::mainLoop(){
     render();
-    events(inGame);
+    keyEvents(inGame);
+    cameraEvents();
 }
 
-void Game::events(appStatus status){
+void Game::keyEvents(appStatus status){
     while( SDL_PollEvent(&event) != 0 ){
         if( event.type == SDL_QUIT){
             close();
@@ -85,6 +86,11 @@ void Game::events(appStatus status){
     }
 }
 
+void Game::cameraEvents(){
+    camera.update(player.getRect());
+    camera.apply(currentMap.getMapRectPtr());
+}
+
 void Game::close(){
     exit_status = true;
     SDL_DestroyRenderer(gRenderer);
@@ -101,7 +107,7 @@ void Game::displayFPS(){
 
     SDL_RenderCopy(gRenderer, fpsTextTexture.getTexture(), NULL, &fpsRect);
 
-    SDL_Delay((1000/fpsCap)-1);
+    SDL_Delay((1000/fpsCap)-2);
     fpsCount++;
 }
 
