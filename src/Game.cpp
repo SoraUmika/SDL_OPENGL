@@ -35,7 +35,7 @@ void Game::initGameObject(){
     fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
 
     currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
-    currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*5, TILESIZE*12);
+    currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*10, TILESIZE*10);
 
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
 }
@@ -44,8 +44,8 @@ void Game::render(){
     setRenderDrawColor(chooseColor(WHITE));
     SDL_RenderClear(gRenderer);
 
-    currentMap.render();
-    player.render();
+    currentMap.render(camera.apply(currentMap.getMapRect()));
+    player.render(camera.apply(player.getRect()));
 
     displayFPS();
     SDL_RenderPresent(gRenderer);
@@ -61,9 +61,7 @@ void Game::keyEvents(appStatus status){
     while( SDL_PollEvent(&event) != 0 ){
         if( event.type == SDL_QUIT){
             close();
-        }
-
-        if(event.type == SDL_KEYDOWN){
+        }else if(event.type == SDL_KEYDOWN){
             switch(event.key.keysym.sym){
                 case SDLK_F11:
                     if(!fullScreenFlag){
@@ -88,7 +86,6 @@ void Game::keyEvents(appStatus status){
 
 void Game::cameraEvents(){
     camera.update(player.getRect());
-    camera.apply(currentMap.getMapRectPtr());
 }
 
 void Game::close(){

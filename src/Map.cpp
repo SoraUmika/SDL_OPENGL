@@ -45,11 +45,13 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
     tileSet.loadSheet(tileImgPath, TILEWIDTH);
 }
 
-void Map::render(){
+void Map::render(SDL_Rect applyCamera){
     static bool flag = false;
     for(int layerCount=0; layerCount<layers.size(); layerCount++){
-            pos_x_counter = mapRect.x;
-            pos_y_counter = mapRect.y;
+            //pos_x_counter = mapRect.x;
+            //pos_y_counter = mapRect.y;
+            pos_x_counter = applyCamera.x;
+            pos_y_counter = applyCamera.y;
         for(int tileCount=0; tileCount<layers.at(layerCount).data.size(); tileCount++){
             tileIndex = layers.at(layerCount).data[tileCount] - 1;
             if(tileIndex != -1){
@@ -61,14 +63,18 @@ void Map::render(){
 
 
             pos_x_counter+=TILEWIDTH;
-            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + mapRect.x){
-                pos_x_counter = mapRect.x;
+            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + applyCamera.x){
+                pos_x_counter = applyCamera.x;
                 pos_y_counter += TILEWIDTH;
             }
             
         }
     }
     flag = true;
+}
+
+void Map::renderEntity(SDL_Rect targetRect){
+    canvas.drawRect(&targetRect);
 }
 
 void Map::setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY){

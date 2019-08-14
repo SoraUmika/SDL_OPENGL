@@ -9,23 +9,29 @@
 
 class Player: public Root{
     public:
-        Player(SDL_Rect Rect = {0, 0, TILESIZE, TILESIZE*2});
+        Player(int x = 0, int y = 0, int width = TILESIZE, int heigh = TILESIZE*2);
         
-        void canvas();
-        void render();
+        void render(SDL_Rect cameraRect);
         void events(SDL_Event &event);
 
-        
+        int getPos_x();
+        int getPos_y();
+
         SDL_Rect* getRectPtr();
-        //SDL_Rect* getRenderRectPtr();
         SDL_Rect getRect();
     private:
 
         SDL_Rect pRect;
-        //SDL_Rect rRect;
+        SDL_Rect tmpRect;
+        SDL_Rect camRect;
         LTexture pTexture;
         Canvas pCanvas;
-        int movementSpeed = TILESIZE;
+        void canvas();
+
+        int movementSpeed = TILESIZE/4;
+
+        int pos_x;
+        int pos_y;
 
 };
 

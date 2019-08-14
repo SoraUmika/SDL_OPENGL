@@ -13,9 +13,10 @@ struct Offset{
 class Camera: public Root{
     public:
         void init(int width, int height);
-        void apply(SDL_Rect *entityRect);
-        void update(SDL_Rect targetRect);
-
+        SDL_Rect apply(SDL_Rect entityRect);
+        void update(SDL_Rect target);
+        
+        SDL_Rect takeRect();
         Offset offSet();
     private:
         SDL_Rect cameraRect;
