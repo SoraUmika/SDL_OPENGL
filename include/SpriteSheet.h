@@ -13,9 +13,11 @@ struct tilePos{
 };
 
 struct aaTilepos{
-    std::vector<tilePos> animTilePos;
+    std::string direction;
+    std::vector<int> tileIndices;
 };
 
+//select sprite tile indices
 struct AnimSet{
     std::string type;
     std::vector<int> tileIndices;
@@ -30,24 +32,20 @@ class SpriteSheet{
         
         void loadAnimTileSet(AnimSet down, AnimSet left, AnimSet right, AnimSet up);
 
-        std::vector<tilePos> walkCycleLeft;
-        std::vector<tilePos> walkCycleRight;
-        std::vector<tilePos> walkCycleUp;
-        std::vector<tilePos> walkCycleDown;
-        int indexDown = 0;
-        int indexUp = 0;
-        int indexLeft = 0;
-        int indexRight = 0;
-
+        void render(int pos_x, int pos_y);
+        std::vector<int> walkCycleIndices;
+        int currentAnimIndex = 0;
 
         void setCurrentClip(Direction direction);
-        int currentAnimIndex;
+
+        void updateCurrentClip();
         SDL_Rect currentClip;
         int sheetSize_x;
         int sheetSize_y;
     private:
         int tileSizeX;
         int tileSizeY;
+        int indicesPerSet;
         void parseSheet();
 
 };
