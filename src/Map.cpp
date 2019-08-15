@@ -45,13 +45,11 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
     tileSet.loadSheet(tileImgPath, TILEWIDTH);
 }
 
-void Map::render(SDL_Rect applyCamera){
+void Map::render(SDL_Rect cameraRect){
     static bool flag = false;
     for(int layerCount=0; layerCount<layers.size(); layerCount++){
-            //pos_x_counter = mapRect.x;
-            //pos_y_counter = mapRect.y;
-            pos_x_counter = applyCamera.x;
-            pos_y_counter = applyCamera.y;
+            pos_x_counter = cameraRect.x;
+            pos_y_counter = cameraRect.y;
         for(int tileCount=0; tileCount<layers.at(layerCount).data.size(); tileCount++){
             tileIndex = layers.at(layerCount).data[tileCount] - 1;
             if(tileIndex != -1){
@@ -60,11 +58,9 @@ void Map::render(SDL_Rect applyCamera){
                 if(!flag){
                 }
             }
-
-
             pos_x_counter+=TILEWIDTH;
-            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + applyCamera.x){
-                pos_x_counter = applyCamera.x;
+            if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + cameraRect.x){
+                pos_x_counter = cameraRect.x;
                 pos_y_counter += TILEWIDTH;
             }
             

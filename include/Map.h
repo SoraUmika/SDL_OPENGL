@@ -24,7 +24,7 @@ class Map{
         Map();
         
         void loadMapFromJson(std::string jsonPath, std::string tileImgPath);
-        void render(SDL_Rect applyCamera);
+        void render(SDL_Rect cameraRect);
         void renderEntity(SDL_Rect targetRect);
         void setMapPos(int x, int y);
         void setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY);

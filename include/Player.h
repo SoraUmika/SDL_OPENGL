@@ -28,7 +28,8 @@ class Player: public Root{
         Canvas pCanvas;
         void canvas();
 
-        int movementSpeed = TILESIZE/4;
+        int movementSpeed = 4;
+        bool running = false;
 
         int pos_x;
         int pos_y;

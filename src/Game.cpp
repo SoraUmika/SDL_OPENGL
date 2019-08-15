@@ -58,7 +58,15 @@ void Game::mainLoop(){
 }
 
 void Game::keyEvents(appStatus status){
+    player.events(event);
+    
     while( SDL_PollEvent(&event) != 0 ){
+        
+        switch(status){
+            case inGame:
+                break;
+                
+        }
         if( event.type == SDL_QUIT){
             close();
         }else if(event.type == SDL_KEYDOWN){
@@ -76,10 +84,6 @@ void Game::keyEvents(appStatus status){
                     close();
                     break;
             }
-        }
-        switch(status){
-            case inGame:
-                player.events(event);
         }
     }
 }

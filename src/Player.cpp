@@ -15,30 +15,17 @@ void Player::render(SDL_Rect cameraRect){
 }
 
 void Player::events(SDL_Event &event){
-    if(event.type == SDL_KEYDOWN){
-        switch(event.key.keysym.sym){
-            case SDLK_UP:
-                pRect.y -= movementSpeed;
-                pos_y -= movementSpeed;
-                break;
-            case SDLK_DOWN:
-                pRect.y += movementSpeed;
-                pos_y += movementSpeed;
-                break;
-            case SDLK_LEFT:
-                pRect.x -= movementSpeed;
-                pos_x -= movementSpeed;
-                break;
-            case SDLK_RIGHT:
-                pRect.x += movementSpeed;
-                pos_x += movementSpeed;
-                break;
-            default:
-                std::cout << "player x: "<< pRect.x << " y: " << pRect.y << std::endl;
-                std::cout << "offSetRect x: "<< camRect.x << " offSetRect y: " << camRect.y << std::endl;
-                //std::cout << "render x: "<< tmpRect.x << " render y: " << tmpRect.y << std::endl;
-        }
+    const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+    if( currentKeyStates[ SDL_SCANCODE_UP ] ){
+        pRect.y -= movementSpeed;
+    }else if( currentKeyStates[ SDL_SCANCODE_DOWN ] ){
+        pRect.y += movementSpeed;
+    }else if( currentKeyStates[ SDL_SCANCODE_LEFT ] ){
+        pRect.x -= movementSpeed;
+    }else if( currentKeyStates[ SDL_SCANCODE_RIGHT ] ){
+        pRect.x += movementSpeed;
     }
+    
 }
 
 SDL_Rect* Player::getRectPtr(){
