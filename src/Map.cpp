@@ -63,8 +63,8 @@ void Map::render(Camera camera, Player player){
         for(int tileCount=0; tileCount<layers.at(layerCount).data.size(); tileCount++){
             tileIndex = layers.at(layerCount).data[tileCount] - 1;
             if(tileIndex != -1){
-                renderClip = {tileSet.tilePos.at(tileIndex).x, tileSet.tilePos.at(tileIndex).y, TILEWIDTH, TILEWIDTH};
-                tileSet.sheetTexture.render(pos_x_counter, pos_y_counter, &renderClip);
+                renderClip = {tileSet.ssTilePos.at(tileIndex).x, tileSet.ssTilePos.at(tileIndex).y, TILEWIDTH, TILEWIDTH};
+                tileSet.Texture.render(pos_x_counter, pos_y_counter, &renderClip);
             }
             pos_x_counter+=TILEWIDTH;
             if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + mapNewRect.x){

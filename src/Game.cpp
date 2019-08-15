@@ -37,7 +37,7 @@ void Game::initGameObject(){
     currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
     currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*10, TILESIZE*10);
 
-    player.load_texture("assets\\spriteSheet\\characters\\characterList.png");
+    player.load_ss("assets\\spriteSheet\\characters\\characterList.png");
 
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
 }

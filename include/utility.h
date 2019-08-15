@@ -12,6 +12,8 @@ enum enumColors{
     RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE
 };
 
+enum Direction{LEFT, RIGHT, UP, DOWN};
+
 SDL_Color chooseColor(enumColors color, Uint8 opacity = 255);
 
 TTF_Font* loadFont(std::string path, int fontSize);

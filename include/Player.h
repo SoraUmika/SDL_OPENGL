@@ -6,6 +6,7 @@
 #include <LTexture.h>
 #include <Canvas.h>
 #include <SpriteSheet.h>
+#include <utility.h>
 
 class Player: public Root{
     public:
@@ -14,7 +15,7 @@ class Player: public Root{
         void render(SDL_Rect cameraRect);
         void events();
 
-        void load_texture(std::string path);
+        void load_ss(std::string path);
         SDL_Rect* getRectPtr();
         SDL_Rect getRect();
     private:
@@ -23,9 +24,12 @@ class Player: public Root{
         SDL_Rect tmpRect;
         SDL_Rect camRect;
         LTexture pTexture;
-        SpriteSheet pTextureList;
+        SpriteSheet pSS;
         Canvas pCanvas;
         void canvas();
+
+        void animation(Direction direction);
+        int previousTick = 0;
         
         int movementSpeed = 4;
         bool running = false;

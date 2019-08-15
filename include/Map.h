@@ -12,6 +12,7 @@
 #include <Canvas.h>
 #include <Player.h>
 #include <Camera.h>
+#include <Root.h>
 using json = nlohmann::json;
 
 struct layer{
@@ -22,7 +23,7 @@ struct layer{
     std::vector<int> data;
 };
 
-class Map{
+class Map: public Root{
     public:
         Map();
         
