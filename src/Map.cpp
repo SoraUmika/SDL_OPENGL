@@ -45,7 +45,7 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
         std::cout << layers.at(0).name << std::endl;
 
     }
-    tileSet.loadSheet(tileImgPath, TILEWIDTH);
+    tileSet.loadSheet(tileImgPath, TILEWIDTH, TILEWIDTH);
 }
 
 
@@ -57,7 +57,9 @@ void Map::render(Camera camera, Player player){
             pos_y_counter = mapNewRect.y;
 
         if(layers.at(layerCount).name == "player"){
+            //SDL_RenderSetScale(gRenderer, 1, 2);
             player.render(camera.apply(player.getRect()));
+            //SDL_RenderSetScale(gRenderer, 1, 1);
         }
         
         for(int tileCount=0; tileCount<layers.at(layerCount).data.size(); tileCount++){

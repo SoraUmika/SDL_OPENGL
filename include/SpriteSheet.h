@@ -26,7 +26,7 @@ class SpriteSheet{
         LTexture Texture;
         std::vector<tilePos> ssTilePos;
 
-        void loadSheet(std::string path, int tileSize);
+        void loadSheet(std::string path, int tileSizeX, int tileSizeY);
         
         void loadAnimTileSet(AnimSet down, AnimSet left, AnimSet right, AnimSet up);
 
@@ -46,7 +46,8 @@ class SpriteSheet{
         int sheetSize_x;
         int sheetSize_y;
     private:
-        int tileSize;
+        int tileSizeX;
+        int tileSizeY;
         void parseSheet();
 
 };

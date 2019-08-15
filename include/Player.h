@@ -25,7 +25,7 @@ class Player: public Root{
         SDL_Rect camRect;
         LTexture pTexture;
         SpriteSheet pSS;
-        Canvas pCanvas;
+        Canvas pCanvas; 
         void canvas();
 
         void animation(Direction direction);

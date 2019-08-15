@@ -29,7 +29,13 @@ void Player::events(){
 }
 
 void Player::animation(Direction direction){
-    if(SDL_GetTicks()-previousTick > 100){
+    switch(direction){
+        case DOWN:
+            
+
+    }
+
+    if(SDL_GetTicks()-previousTick > 150){
         previousTick = SDL_GetTicks();
         switch(direction){
             case DOWN:  
@@ -61,7 +67,7 @@ void Player::canvas(){
 }
 
 void Player::load_ss(std::string path){
-    pSS.loadSheet(path, 32);
+    pSS.loadSheet(path, 32, 32);
     pSS.loadAnimTileSet({"down", {0, 1, 2}}, {"left", {12, 13, 14}}, {"right", {24, 25, 26}}, {"up", {36, 37, 38}});
     std::cout << pSS.walkCycleLeft.at(0).x << std::endl;
     std::cout << pSS.walkCycleLeft.at(0).y << std::endl;
@@ -69,8 +75,8 @@ void Player::load_ss(std::string path){
 
 void Player::render(SDL_Rect cameraRect){
     camRect = cameraRect;
-    tmpRect = {cameraRect.x, cameraRect.y, TILESIZE,  TILESIZE*2};
-    pCanvas.drawRect(&tmpRect, BLUE);
+    //tmpRect = {cameraRect.x, cameraRect.y, TILESIZE,  TILESIZE*2};
+    //pCanvas.drawRect(&tmpRect, BLUE);
     
     pSS.Texture.render(cameraRect.x, cameraRect.y, &pSS.currentClip);
     
