@@ -18,7 +18,7 @@ class SpriteSheet{
         std::vector<tilePos> tilePos;
 
         void loadSheet(std::string path, int tileSize);
-        
+         
         int sheetSize_x;
         int sheetSize_y;
     private:

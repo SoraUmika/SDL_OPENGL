@@ -6,7 +6,7 @@ void SpriteSheet::loadSheet(std::string path, int tileSize){
     SDL_QueryTexture(sheetTexture.getTexture(), NULL, NULL, &sheetSize_x, &sheetSize_y);
     
     if(sheetSize_x == 0 || sheetSize_y == 0){
-        std::cout << "Sprite Sheet not initialize properly" << std::endl;
+        std::cout << "Sprite Sheet not initialize properly!" << std::endl;
     }else{
         parseSheet();
     }

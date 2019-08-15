@@ -12,11 +12,9 @@ class Player: public Root{
         Player(int x = 0, int y = 0, int width = TILESIZE, int heigh = TILESIZE*2);
         
         void render(SDL_Rect cameraRect);
-        void events(SDL_Event &event);
+        void events();
 
-        int getPos_x();
-        int getPos_y();
-
+        void load_texture(std::string path);
         SDL_Rect* getRectPtr();
         SDL_Rect getRect();
     private:
@@ -25,14 +23,12 @@ class Player: public Root{
         SDL_Rect tmpRect;
         SDL_Rect camRect;
         LTexture pTexture;
+        SpriteSheet pTextureList;
         Canvas pCanvas;
         void canvas();
-
+        
         int movementSpeed = 4;
         bool running = false;
-
-        int pos_x;
-        int pos_y;
 
 };
 

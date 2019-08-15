@@ -37,6 +37,8 @@ void Game::initGameObject(){
     currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
     currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*10, TILESIZE*10);
 
+    player.load_texture("assets\\spriteSheet\\characters\\characterList.png");
+
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
 }
 
@@ -44,8 +46,8 @@ void Game::render(){
     setRenderDrawColor(chooseColor(WHITE));
     SDL_RenderClear(gRenderer);
 
-    currentMap.render(camera.apply(currentMap.getMapRect()));
-    player.render(camera.apply(player.getRect()));
+    currentMap.render(camera, player);
+    //player.render(camera.apply(player.getRect()));
 
     displayFPS();
     SDL_RenderPresent(gRenderer);
@@ -58,7 +60,7 @@ void Game::mainLoop(){
 }
 
 void Game::keyEvents(appStatus status){
-    player.events(event);
+    player.events();
     
     while( SDL_PollEvent(&event) != 0 ){
         

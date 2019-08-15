@@ -2,8 +2,6 @@
 
 Player::Player(int x, int y, int width, int heigh){
     pRect = {x, y, width, heigh};
-    pos_x = x;
-    pos_y = y;
     //this->rRect = Rect;
 }
 
@@ -14,7 +12,7 @@ void Player::render(SDL_Rect cameraRect){
     //canvas();
 }
 
-void Player::events(SDL_Event &event){
+void Player::events(){
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     if( currentKeyStates[ SDL_SCANCODE_UP ] ){
         pRect.y -= movementSpeed;
@@ -24,6 +22,11 @@ void Player::events(SDL_Event &event){
         pRect.x -= movementSpeed;
     }else if( currentKeyStates[ SDL_SCANCODE_RIGHT ] ){
         pRect.x += movementSpeed;
+    }
+    if( currentKeyStates[ SDL_SCANCODE_X ]){
+        movementSpeed = 4;
+    }else{
+        movementSpeed = 2;
     }
     
 }
@@ -40,10 +43,8 @@ void Player::canvas(){
     pCanvas.drawRect(&pRect, BLUE);
 }
 
-int Player::getPos_x(){
-    return pos_x;
-}
-
-int Player::getPos_y(){
-    return pos_y;
+void Player::load_texture(std::string path){
+    pTextureList.loadSheet(path, 32);
+    std::cout << pTextureList.sheetSize_x << std::endl;
+    std::cout << pTextureList.tilePos.at(1).x << std::endl;
 }

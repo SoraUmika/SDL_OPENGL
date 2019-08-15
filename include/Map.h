@@ -10,11 +10,14 @@
 #include <LTexture.h>
 #include <SpriteSheet.h>
 #include <Canvas.h>
+#include <Player.h>
+#include <Camera.h>
 using json = nlohmann::json;
 
 struct layer{
     int width = 0;
     int height = 0;
+    std::string type;
     std::string name;
     std::vector<int> data;
 };
@@ -24,13 +27,13 @@ class Map{
         Map();
         
         void loadMapFromJson(std::string jsonPath, std::string tileImgPath);
-        void render(SDL_Rect cameraRect);
+        void render(Camera camera, Player player);
         void renderEntity(SDL_Rect targetRect);
         void setMapPos(int x, int y);
         void setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY);
         SDL_Rect getMapRect();
         SDL_Rect *getMapRectPtr();
-        std::vector<layer> layers;
+        
     private:
     
         int TILEWIDTH;
@@ -40,6 +43,8 @@ class Map{
         SDL_Rect mapRect; //mapRect in pixels
         json mapJsonFormat;
         SpriteSheet tileSet;
+        std::vector<layer> layers;
+
         Canvas canvas;
 
         //render
