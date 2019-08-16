@@ -69,10 +69,10 @@ void Player::load_ss(std::string path){
 
 void Player::render(SDL_Rect cameraRect){
     camRect = cameraRect;
-    //tmpRect = {cameraRect.x, cameraRect.y, TILESIZE,  TILESIZE*2};
-    //pCanvas.drawRect(&tmpRect, BLUE);
+    tmpRect = {cameraRect.x, cameraRect.y, TILESIZE,  TILESIZE*2};
+    pCanvas.drawRect(&tmpRect, BLUE);
     
-    pSS.render(cameraRect.x, cameraRect.y);
+    //pSS.render(cameraRect.x, cameraRect.y);
     
     //canvas();
 }

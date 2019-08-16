@@ -39,7 +39,7 @@ void SpriteSheet::loadAnimTileSet(AnimSet down, AnimSet left, AnimSet right, Ani
     currentAnimIndex = 0;
 }
 
-int boundValue(int currentVal, int minVal, int maxVal){
+int boundValue(int &currentVal, int minVal, int maxVal){
     if(currentVal == maxVal){
         return minVal;
     }else{

@@ -12,7 +12,7 @@ Game::Game(){
         }else{
             gWindowSurface = SDL_GetWindowSurface( gWindow );
 
-            gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+            gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
             if(gRenderer == NULL){
                 std::cout << "SDL render fail to initialize" << SDL_GetError() << std::endl;
             }else{

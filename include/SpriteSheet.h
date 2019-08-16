@@ -20,7 +20,7 @@ struct aaTilepos{
 //select sprite tile indices
 struct AnimSet{
     std::string type;
-    std::vector<int> tileIndices;
+    std::vector<Uint16> tileIndices;
 };
 
 class SpriteSheet{
