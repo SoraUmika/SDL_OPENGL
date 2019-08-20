@@ -11,40 +11,46 @@
 #include <Map.h>
 #include <SpriteSheet.h>
 #include <Camera.h>
+#include <Timer.h>
 #include <TestClass.h>
 
-enum appStatus{inGame, inMainMenu, inSettings, inExit, inPause};
+enum AppStatus{inGame, inMainMenu, inSettings, inExit, inPause};
 
 class Game: public Root{
     public:
         Game();
         void mainLoop();
+        void setAppStatus(AppStatus status);
+        void close();
         bool exit_status = false;
 
     private:
-        void menu();
         void render();
-        void close();
-        void keyEvents(appStatus status);
+        void keyEvents();
         void cameraEvents();
         SDL_Event event;
+        AppStatus appStatus = inGame;
 
         //timing & fps
-        int fpsCap = 60;
+        //int fpsCap = 60;
         int fpsCount = 0;
-        int timeTicks = 0;
-        SDL_Rect fpsRect = {5, 5, 100, 24};
         LTexture fpsTextTexture;
         void displayFPS();
 
+        //GAME MAJOR OBJECTS
         Map currentMap;
         Canvas canvas;
         Player player;
         Camera camera;
-        //testMembers
+        
+        //INITIALIZE GAME OBJECT
         void initGameObject();
-        LTexture testTexture;
-        SDL_Rect testRect;
+
+        simpleTimer m_timer;
+
+        //testMembers
+        //LTexture testTexture;
+        //SDL_Rect testRect;
 };
 
 #endif

@@ -1,77 +1,72 @@
 #include <Player.h>
 
 Player::Player(int x, int y, int width, int heigh){
-    pRect = {x, y, width, heigh};
-    //this->rRect = Rect;
+    m_rect = {x, y, width, heigh};
 }
 
 void Player::events(){
+    keyEvents();
+}
+
+void Player::keyEvents(){
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     if( currentKeyStates[ SDL_SCANCODE_UP ] ){
-        pRect.y -= movementSpeed;
-        animation(UP);
+        m_rect.y -= movementSpeed;
+        animation(MOVE_UP);
     }else if( currentKeyStates[ SDL_SCANCODE_DOWN ] ){
-        pRect.y += movementSpeed;
-        animation(DOWN);
+        m_rect.y += movementSpeed;
+        animation(MOVE_DOWN);
     }else if( currentKeyStates[ SDL_SCANCODE_LEFT ] ){
-        pRect.x -= movementSpeed;
-        animation(LEFT);
+        m_rect.x -= movementSpeed;
+        animation(MOVE_LEFT);
     }else if( currentKeyStates[ SDL_SCANCODE_RIGHT ] ){
-        pRect.x += movementSpeed;
-        animation(RIGHT);
+        m_rect.x += movementSpeed;
+        animation(MOVE_RIGHT);
+    }
+    else if( currentKeyStates[ SDL_SCANCODE_SPACE ]){
+        std::cout << tmpRect.x << " :" << tmpRect.y << " :" << tmpRect.w << " :" << tmpRect.h << std::endl;
     }
     if( currentKeyStates[ SDL_SCANCODE_X ]){
         movementSpeed = 4;
     }else{
         movementSpeed = 2;
     }
-    
 }
 
-void Player::animation(Direction direction){
-    pSS.updateCurrentClip();
-    if(SDL_GetTicks()-previousTick > 150){
-        previousTick = SDL_GetTicks();
-        switch(direction){
-            case DOWN:  
-                pSS.setCurrentClip(DOWN);
-                break;
-            case UP:
-                pSS.setCurrentClip(UP);          
-                break;
-            case LEFT:
-                pSS.setCurrentClip(LEFT);
-                break;
-            case RIGHT:
-                pSS.setCurrentClip(RIGHT);
-                break;
-        }
+void Player::animation(AnimeType animeType){
+    switch(animeType){
+        case MOVE_DOWN:
+            break;
+        case MOVE_LEFT:
+            break;
+        case MOVE_RIGHT:
+            break;
+        case MOVE_UP:
+            break;
+        case STAND_BY:
+            break;
     }
 }
 
 SDL_Rect* Player::getRectPtr(){
-    return &pRect;
+    return &m_rect;
 }
 
 SDL_Rect Player::getRect(){
-    return pRect;
+    return m_rect;
 }
 
 void Player::canvas(){
-    pCanvas.drawRect(&pRect, BLUE);
+    pCanvas.drawRect(&m_rect, BLUE);
 }
 
-void Player::load_ss(std::string path){
+void Player::loadSpriteSheet(std::string path){
     pSS.loadSheet(path, 32, 32);
-    pSS.loadAnimTileSet({"down", {0, 1, 2}}, {"left", {12, 13, 14}}, {"right", {24, 25, 26}}, {"up", {36, 37, 38}});
-    pSS.updateCurrentClip();
 }
 
-void Player::render(SDL_Rect cameraRect){
-    camRect = cameraRect;
-    tmpRect = {cameraRect.x, cameraRect.y, TILESIZE,  TILESIZE*2};
-    pCanvas.drawRect(&tmpRect, BLUE);
-    
+void Player::render(SDL_Rect renderRect){
+    pCanvas.drawRect(&renderRect, BLUE);
+    tmpRect = renderRect; 
     //pSS.render(cameraRect.x, cameraRect.y);
     
     //canvas();

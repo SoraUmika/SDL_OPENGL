@@ -7,15 +7,9 @@ void Camera::init(int width, int height){
 }
 
 SDL_Rect Camera::apply(SDL_Rect entityRect){
-    return {entityRect.x + cameraRect.x, entityRect.y + cameraRect.y};
+    return {cameraRect.x+entityRect.x, cameraRect.y+entityRect.y, entityRect.w, entityRect.h};
 }
 
 void Camera::update(SDL_Rect target){
-    offSet_x = -target.x + (SCREEN_WIDTH/2);
-    offSet_y = -target.y + (SCREEN_HEIGHT/2);
-    cameraRect = {offSet_x, offSet_y, mapWidth, mapHeight};
-}
-
-SDL_Rect Camera::takeRect(){
-    return {offSet_x, offSet_y, mapWidth, mapHeight};
+    cameraRect = {-target.x + (SCREEN_WIDTH/2), -target.y + (SCREEN_HEIGHT/2), mapWidth, mapHeight};
 }

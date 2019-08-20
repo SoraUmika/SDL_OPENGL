@@ -11,14 +11,14 @@ class LTexture: public Root{
     public:
         void loadTextTexture(TTF_Font* font, std::string text, SDL_Color color);
         void loadTextureFromFile(std::string path);
-        void free();
         void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
-        void loadSpriteSheet();
-        SDL_Texture* getTexture();
 
+        void setTextureSize(int width, int height);
+        void retrieveSize(int *width, int *height);
     private:
         SDL_Texture* mTexture;
 
+        void free();
         int mWidth;
         int mHeight;
 };

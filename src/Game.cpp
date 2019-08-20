@@ -33,11 +33,12 @@ Game::Game(){
 void Game::initGameObject(){
     defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
     fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
+    fpsTextTexture.setTextureSize(80, 20);
 
     currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
     currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*10, TILESIZE*10);
 
-    player.load_ss("assets\\spriteSheet\\characters\\characterList.png");
+    //player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
 
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
 }
@@ -55,16 +56,16 @@ void Game::render(){
 
 void Game::mainLoop(){
     render();
-    keyEvents(inGame);
+    keyEvents();
     cameraEvents();
 }
 
-void Game::keyEvents(appStatus status){
+void Game::keyEvents(){
     player.events();
     
     while( SDL_PollEvent(&event) != 0 ){
         
-        switch(status){
+        switch(appStatus){
             case inGame:
                 break;
                 
@@ -102,15 +103,15 @@ void Game::close(){
 }
 
 void Game::displayFPS(){
-    if((SDL_GetTicks()-timeTicks) >= 1000){
-        timeTicks = SDL_GetTicks();
+    if(m_timer.checkTimePassed(1000)){
         fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
         fpsCount = 0;
     }
 
-    SDL_RenderCopy(gRenderer, fpsTextTexture.getTexture(), NULL, &fpsRect);
+    //SDL_RenderCopy(gRenderer, fpsTextTexture.getTexture(), NULL, &fpsRect);
+    fpsTextTexture.render(5, 5);
 
-    SDL_Delay((1000/fpsCap)-2);
+    //SDL_Delay((1000/fpsCap));
     fpsCount++;
 }
 

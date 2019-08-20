@@ -7,42 +7,29 @@
 #include <SDL.h>
 #include <string>
 #include <utility.h>
-struct tilePos{
+struct TilePosition{
     int x;
     int y;
-};
-
-struct aaTilepos{
-    std::string direction;
-    std::vector<int> tileIndices;
-};
-
-//select sprite tile indices
-struct AnimSet{
-    std::string type;
-    std::vector<Uint16> tileIndices;
 };
 
 class SpriteSheet{
     public:
         LTexture Texture;
-        std::vector<tilePos> ssTilePos;
+
+        //each tile's position relative to the spritesheet
+        std::vector<TilePosition> tilePositions;
 
         void loadSheet(std::string path, int tileSizeX, int tileSizeY);
-        
-        void loadAnimTileSet(AnimSet down, AnimSet left, AnimSet right, AnimSet up);
-
         void render(int pos_x, int pos_y);
-        std::vector<int> walkCycleIndices;
-        int currentAnimIndex = 0;
 
-        void setCurrentClip(Direction direction);
+        //set focus tile base on tile index , count starting from left to down
+        void setFocusTile(int tileIndex);
 
-        void updateCurrentClip();
-        SDL_Rect currentClip;
-        int sheetSize_x;
-        int sheetSize_y;
     private:
+        int spriteSheetWidth;
+        int spriteSheetHeight;
+        
+        SDL_Rect focusedTileClip;
         int tileSizeX;
         int tileSizeY;
         int indicesPerSet;

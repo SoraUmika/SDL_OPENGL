@@ -8,9 +8,9 @@
 
 using namespace std;
 
-enum enumColors{
-    RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE
-};
+enum enumColors{RED, GREEN, BLUE, YELLOW, ORANGE, BLACK, WHITE};
+
+enum AnimeType{MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, STAND_BY};
 
 enum Direction{LEFT, RIGHT, UP, DOWN};
 

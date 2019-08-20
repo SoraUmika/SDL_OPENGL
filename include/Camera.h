@@ -22,9 +22,7 @@ class Camera: public Root{
         SDL_Rect cameraRect;
         int mapWidth;
         int mapHeight;
-        
-        int offSet_x;
-        int offSet_y;
+
 };
 
 #endif

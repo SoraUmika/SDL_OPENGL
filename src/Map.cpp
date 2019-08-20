@@ -29,7 +29,7 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
                             newLayer.name = it.value();
                         }else if(it.key() == "data"){
                             for(int j = 0; j < it.value().size(); j++){
-                                newLayer.data.push_back(it.value()[j]);
+                                newLayer.tile_data.push_back(it.value()[j]);
                             }
                         }else if(it.key() == "type"){
                             newLayer.type == it.value();
@@ -42,31 +42,25 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
         mapRect = {0, 0, WIDTH*TILEWIDTH, HEIGHT*TILEWIDTH};
         tmpFile.close();
         mapJsonFormat.clear();
-        std::cout << layers.at(0).name << std::endl;
-
     }
-    tileSet.loadSheet(tileImgPath, TILEWIDTH, TILEWIDTH);
+    mapTilesImage.loadSheet(tileImgPath, TILEWIDTH, TILEWIDTH);
 }
 
 
 void Map::render(Camera camera, Player player){
-    static bool tmpBool = false;
     SDL_Rect mapNewRect = camera.apply(mapRect);
     for(int layerCount=0; layerCount<layers.size(); layerCount++){
             pos_x_counter = mapNewRect.x;
-            pos_y_counter = mapNewRect.y;
+            pos_y_counter = mapNewRect.y;  
 
         if(layers.at(layerCount).name == "player"){
-            //SDL_RenderSetScale(gRenderer, 1, 2);
             player.render(camera.apply(player.getRect()));
-            //SDL_RenderSetScale(gRenderer, 1, 1);
         }
-        
-        for(int tileCount=0; tileCount<layers.at(layerCount).data.size(); tileCount++){
-            tileIndex = layers.at(layerCount).data[tileCount] - 1;
+        for(int tileCount=0; tileCount<layers.at(layerCount).tile_data.size(); tileCount++){
+            tileIndex = layers.at(layerCount).tile_data[tileCount] - 1;
             if(tileIndex != -1){
-                renderClip = {tileSet.ssTilePos.at(tileIndex).x, tileSet.ssTilePos.at(tileIndex).y, TILEWIDTH, TILEWIDTH};
-                tileSet.Texture.render(pos_x_counter, pos_y_counter, &renderClip);
+                renderClip = {mapTilesImage.tilePositions.at(tileIndex).x, mapTilesImage.tilePositions.at(tileIndex).y, TILEWIDTH, TILEWIDTH};
+                mapTilesImage.Texture.render(pos_x_counter, pos_y_counter, &renderClip);
             }
             pos_x_counter+=TILEWIDTH;
             if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + mapNewRect.x){
@@ -74,7 +68,7 @@ void Map::render(Camera camera, Player player){
                 pos_y_counter += TILEWIDTH;
             }   
         }
-    }
+    }   
 }
 
 void Map::renderEntity(SDL_Rect targetRect){

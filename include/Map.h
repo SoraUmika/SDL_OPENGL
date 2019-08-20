@@ -20,7 +20,7 @@ struct layer{
     int height = 0;
     std::string type;
     std::string name;
-    std::vector<int> data;
+    std::vector<int> tile_data;
 };
 
 class Map: public Root{
@@ -43,7 +43,7 @@ class Map: public Root{
         
         SDL_Rect mapRect; //mapRect in pixels
         json mapJsonFormat;
-        SpriteSheet tileSet;
+        SpriteSheet mapTilesImage;
         std::vector<layer> layers;
 
         Canvas canvas;

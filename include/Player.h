@@ -7,28 +7,33 @@
 #include <Canvas.h>
 #include <SpriteSheet.h>
 #include <utility.h>
+#include <Sprite.h>
+#include <Timer.h>
+#include <vector>
 
-class Player: public Root{
+class Player: public Root, public Sprite{
     public:
         Player(int x = 0, int y = 0, int width = TILESIZE, int heigh = TILESIZE*2);
         
-        void render(SDL_Rect cameraRect);
+        void render(SDL_Rect renderRect);
         void events();
 
-        void load_ss(std::string path);
+        void loadSpriteSheet(std::string path);
         SDL_Rect* getRectPtr();
         SDL_Rect getRect();
     private:
 
-        SDL_Rect pRect;
         SDL_Rect tmpRect;
         SDL_Rect camRect;
         LTexture pTexture;
         SpriteSheet pSS;
         Canvas pCanvas; 
         void canvas();
+        void keyEvents();
+        void movements(Direction direction);
 
-        void animation(Direction direction);
+        void animation(AnimeType animeType);
+        void animationS(Direction direction);
         int previousTick = 0;
         
         int movementSpeed = 4;

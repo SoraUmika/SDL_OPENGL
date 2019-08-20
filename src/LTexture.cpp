@@ -4,6 +4,8 @@ void LTexture::loadTextTexture(TTF_Font* font, std::string text, SDL_Color color
     SDL_Texture* newTextTexture = NULL;
     SDL_Surface* message = TTF_RenderText_Solid(font, text.c_str(), color);
     newTextTexture = SDL_CreateTextureFromSurface(gRenderer, message); 
+    mWidth = message->w;
+    mHeight = message->h;
     if(newTextTexture == NULL){
         std::cout << "Unable to load text texture! SDL Error: " << SDL_GetError() << std::endl;
     }
@@ -33,10 +35,6 @@ void LTexture::loadTextureFromFile(std::string path){
     mTexture = newTexture;
 }
 
-SDL_Texture* LTexture::getTexture(){
-    return mTexture;
-}
-
 void LTexture::free(){
     if(mTexture != NULL){
         SDL_DestroyTexture(mTexture);
@@ -57,3 +55,12 @@ void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cen
 
 	SDL_RenderCopyEx( gRenderer, mTexture, clip, &renderQuad, angle, center, flip );
 }
+
+void LTexture::retrieveSize(int *width, int *height){
+    SDL_QueryTexture(mTexture, NULL, NULL, width, height);
+}
+
+void LTexture::setTextureSize(int width, int height){
+    mWidth = width;
+    mHeight = height;
+};
