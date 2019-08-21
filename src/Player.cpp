@@ -2,6 +2,7 @@
 
 Player::Player(int x, int y, int width, int heigh){
     m_rect = {x, y, width, heigh};
+    
 }
 
 void Player::events(){

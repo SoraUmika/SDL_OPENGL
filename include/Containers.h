@@ -5,13 +5,18 @@
 #include <iostream>
 template <class VAR> class Specicialized_V{
     public:
-        Specicialized_V(){};
+        Specicialized_V(){}
         Specicialized_V(int reserve_amt){
             m_vector.reserve(reserve_amt);
         }
-
-        VAR at(int index){
-            return m_vector.at(index);
+        Specicialized_V(std::vector<VAR> vec){
+            m_vector = vec;
+        }
+        void init(std::vector<VAR> vec){
+            m_vector.reserve(vec.size());
+            for(int i=0; i<vec.size(); i++){
+                vec.push_back(vec.at(i));
+            }
         }
         void reserve(int reserve_amt){
             m_vector.reserve(reserve_amt);
@@ -19,13 +24,14 @@ template <class VAR> class Specicialized_V{
         void push_back(VAR value){
             m_vector.push_back(value);
         }
-
+        VAR at(int index){
+            return m_vector.at(index);
+        }
         VAR next(){
             currentIndex ++;
             if(currentIndex == m_vector.size()){
                 currentIndex = 0;
             }
-            std::cout << "index: " << currentIndex << std::endl;
             return m_vector.at(currentIndex);
         }        
     private:

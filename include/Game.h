@@ -47,7 +47,6 @@ class Game: public Root{
         //INITIALIZE GAME OBJECT
         void initGameObject();
         simpleTimer m_timer;
-
 };
 
 #endif
