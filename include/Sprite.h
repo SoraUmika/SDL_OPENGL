@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <Canvas.h>
 enum SpriteType{PLAYER, NPC, WALL, ITEM};
 
 void tmpFunction();
@@ -25,7 +26,13 @@ class Wall: public Sprite{
             m_type = WALL;
             m_rect = rect;
         }   
+        void render(int x_pos, int y_pos){
+            renderRect = {x_pos, y_pos, m_rect.w, m_rect.h};
+            canvas.drawRectOutline(&renderRect);
+        }
     private:
+        Canvas canvas;
+        SDL_Rect renderRect;
 
 };
 

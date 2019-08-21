@@ -13,6 +13,7 @@
 #include <Player.h>
 #include <Camera.h>
 #include <Root.h>
+#include <Sprite.h>
 using json = nlohmann::json;
 
 struct layer{
@@ -51,7 +52,7 @@ class Map: public Root{
         int tileIndex;
         int pos_x_counter;
         int pos_y_counter;
-
+        std::vector<Wall> WallContainer;
         SDL_Rect renderClip;
 };
 

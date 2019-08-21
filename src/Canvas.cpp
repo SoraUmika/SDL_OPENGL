@@ -15,3 +15,8 @@ void Canvas::drawRect(SDL_Rect *rect, enumColors color){
     setRenderDrawColor(chooseColor(color));
     SDL_RenderFillRect(gRenderer, rect);
 }
+
+void Canvas::drawRectOutline(SDL_Rect *rect, enumColors Color=YELLOW){
+    setRenderDrawColor(chooseColor(YELLOW));
+    SDL_RenderDrawRect(gRenderer, rect);
+}
