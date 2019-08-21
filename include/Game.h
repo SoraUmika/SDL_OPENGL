@@ -12,6 +12,7 @@
 #include <SpriteSheet.h>
 #include <Camera.h>
 #include <Timer.h>
+#include <Containers.h>
 #include <TestClass.h>
 
 enum AppStatus{inGame, inMainMenu, inSettings, inExit, inPause};
@@ -31,8 +32,8 @@ class Game: public Root{
         SDL_Event event;
         AppStatus appStatus = inGame;
 
+        
         //timing & fps
-        //int fpsCap = 60;
         int fpsCount = 0;
         LTexture fpsTextTexture;
         void displayFPS();
@@ -45,12 +46,8 @@ class Game: public Root{
         
         //INITIALIZE GAME OBJECT
         void initGameObject();
-
         simpleTimer m_timer;
 
-        //testMembers
-        //LTexture testTexture;
-        //SDL_Rect testRect;
 };
 
 #endif

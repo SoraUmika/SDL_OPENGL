@@ -10,7 +10,7 @@
 #include <Sprite.h>
 #include <Timer.h>
 #include <vector>
-
+#include <Containers.h>
 class Player: public Root, public Sprite{
     public:
         Player(int x = 0, int y = 0, int width = TILESIZE, int heigh = TILESIZE*2);
@@ -26,10 +26,9 @@ class Player: public Root, public Sprite{
         Canvas pCanvas; 
         void canvas();
         void keyEvents();
-        void movements(Direction direction);
 
         void animation(AnimeType animeType);
-        
+        Specicialized_V<int> run;
         int movementSpeed = 4;
         bool running = false;
 

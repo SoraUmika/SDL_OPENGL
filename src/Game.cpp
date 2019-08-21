@@ -37,7 +37,7 @@ void Game::initGameObject(){
 
     currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
     currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*10, TILESIZE*10);
-
+    
     player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
 
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
@@ -107,7 +107,6 @@ void Game::displayFPS(){
         fpsCount = 0;
     }
 
-    //SDL_RenderCopy(gRenderer, fpsTextTexture.getTexture(), NULL, &fpsRect);
     fpsTextTexture.render(5, 5);
 
     SDL_Delay((1000/60));
