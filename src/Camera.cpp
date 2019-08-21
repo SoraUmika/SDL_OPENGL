@@ -11,5 +11,11 @@ SDL_Rect Camera::apply(SDL_Rect entityRect){
 }
 
 void Camera::update(SDL_Rect target){
-    cameraRect = {-target.x + (SCREEN_WIDTH/2), -target.y + (SCREEN_HEIGHT/2), mapWidth, mapHeight};
+    cam_x = -target.x + (SCREEN_WIDTH/2);
+    cam_y = -target.y + (SCREEN_HEIGHT/2);
+
+    cam_x = getMinVal(0, cam_x);
+    cam_y = getMinVal(0, cam_y);
+    cameraRect = {cam_x, cam_y, mapWidth, mapHeight};
+
 }

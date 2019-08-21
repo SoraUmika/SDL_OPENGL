@@ -30,3 +30,19 @@ TTF_Font* loadFont(std::string path, int fontSize){
     }
     return newFont;
 }
+
+int getMinVal(int val1, int val2){
+    if(val1 < val2){
+        return val1; 
+    }else{
+        return val2;
+    }
+}
+
+int getMaxVal(int val1, int val2){
+    if(val1 > val2){
+        return val1;
+    }else{
+        return val2;
+    }
+}

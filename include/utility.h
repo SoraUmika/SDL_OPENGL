@@ -14,6 +14,10 @@ enum AnimeType{MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, STAND_BY};
 
 enum Direction{LEFT, RIGHT, UP, DOWN};
 
+int getMinVal(int val1, int val2);
+
+int getMaxVal(int val1, int val2);
+
 SDL_Color chooseColor(enumColors color, Uint8 opacity = 255);
 
 TTF_Font* loadFont(std::string path, int fontSize);

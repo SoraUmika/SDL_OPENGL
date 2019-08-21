@@ -12,7 +12,7 @@ Game::Game(){
         }else{
             gWindowSurface = SDL_GetWindowSurface( gWindow );
 
-            gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+            gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
             if(gRenderer == NULL){
                 std::cout << "SDL render fail to initialize" << SDL_GetError() << std::endl;
             }else{
@@ -38,7 +38,7 @@ void Game::initGameObject(){
     currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
     currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*10, TILESIZE*10);
 
-    //player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
+    player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
 
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
 }
@@ -48,7 +48,6 @@ void Game::render(){
     SDL_RenderClear(gRenderer);
 
     currentMap.render(camera, player);
-    //player.render(camera.apply(player.getRect()));
 
     displayFPS();
     SDL_RenderPresent(gRenderer);
@@ -111,7 +110,7 @@ void Game::displayFPS(){
     //SDL_RenderCopy(gRenderer, fpsTextTexture.getTexture(), NULL, &fpsRect);
     fpsTextTexture.render(5, 5);
 
-    //SDL_Delay((1000/fpsCap));
+    SDL_Delay((1000/60));
     fpsCount++;
 }
 

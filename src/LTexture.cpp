@@ -1,6 +1,7 @@
 #include <LTexture.h>
 
 void LTexture::loadTextTexture(TTF_Font* font, std::string text, SDL_Color color){
+    free();
     SDL_Texture* newTextTexture = NULL;
     SDL_Surface* message = TTF_RenderText_Solid(font, text.c_str(), color);
     newTextTexture = SDL_CreateTextureFromSurface(gRenderer, message); 
@@ -9,12 +10,12 @@ void LTexture::loadTextTexture(TTF_Font* font, std::string text, SDL_Color color
     if(newTextTexture == NULL){
         std::cout << "Unable to load text texture! SDL Error: " << SDL_GetError() << std::endl;
     }
-
+    mTexture = newTextTexture;
     SDL_FreeSurface(message);
-    mTexture =  newTextTexture;
 }
 
 void LTexture::loadTextureFromFile(std::string path){
+    free();
     SDL_Texture* newTexture = NULL;
     SDL_Surface* newSurface = IMG_Load(path.c_str());
 
@@ -40,7 +41,7 @@ void LTexture::free(){
         SDL_DestroyTexture(mTexture);
         mTexture = NULL;
         mWidth = 0;
-        mHeight = 0;
+        mHeight = 0; 
     }
 }
 

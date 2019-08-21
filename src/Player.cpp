@@ -24,27 +24,32 @@ void Player::keyEvents(){
         animation(MOVE_RIGHT);
     }
     else if( currentKeyStates[ SDL_SCANCODE_SPACE ]){
-        std::cout << tmpRect.x << " :" << tmpRect.y << " :" << tmpRect.w << " :" << tmpRect.h << std::endl;
+        std::cout << m_rect.x << " :" << m_rect.y << " :" << std::endl;
     }
     if( currentKeyStates[ SDL_SCANCODE_X ]){
         movementSpeed = 4;
     }else{
         movementSpeed = 2;
     }
+
 }
 
 void Player::animation(AnimeType animeType){
     switch(animeType){
         case MOVE_DOWN:
+            playerTiles.setFocusTile(0);
             break;
         case MOVE_LEFT:
+            playerTiles.setFocusTile(12);
             break;
         case MOVE_RIGHT:
+            playerTiles.setFocusTile(24);
             break;
         case MOVE_UP:
+            playerTiles.setFocusTile(36);
             break;
         case STAND_BY:
-            break;
+            
     }
 }
 
@@ -52,22 +57,14 @@ SDL_Rect* Player::getRectPtr(){
     return &m_rect;
 }
 
-SDL_Rect Player::getRect(){
-    return m_rect;
-}
-
 void Player::canvas(){
     pCanvas.drawRect(&m_rect, BLUE);
 }
 
 void Player::loadSpriteSheet(std::string path){
-    pSS.loadSheet(path, 32, 32);
+    playerTiles.loadSheet(path, 32, 32);
 }
 
 void Player::render(SDL_Rect renderRect){
-    pCanvas.drawRect(&renderRect, BLUE);
-    tmpRect = renderRect; 
-    //pSS.render(cameraRect.x, cameraRect.y);
-    
-    //canvas();
+    playerTiles.render(renderRect.x, renderRect.y);    
 }

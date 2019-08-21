@@ -13,24 +13,13 @@ void SpriteSheet::loadSheet(std::string path, int tileSizeX, int tileSizeY){
 }
 
 void SpriteSheet::parseSheet(){
-
+    //should reserve memory
     for(int j=0; j<spriteSheetHeight; j+=tileSizeY){
         for(int i=0; i<spriteSheetWidth; i+=tileSizeX){
             tilePositions.push_back({i, j});
         }
     }
-
-    std::cout << 1460/32 << std::endl; 
-
-}
-
-
-int boundValue(int &currentVal, int minVal, int maxVal){
-    if(currentVal == maxVal){
-        return minVal;
-    }else{
-        return currentVal;
-    }
+    focusedTileClip = {tilePositions.at(0).x, tilePositions.at(0).y, tileSizeX, tileSizeY};
 }
 
 void SpriteSheet::render(int pos_x, int pos_y){

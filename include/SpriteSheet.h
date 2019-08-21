@@ -14,18 +14,16 @@ struct TilePosition{
 
 class SpriteSheet{
     public:
-        LTexture Texture;
-
-        //each tile's position relative to the spritesheet
-        std::vector<TilePosition> tilePositions;
-
         void loadSheet(std::string path, int tileSizeX, int tileSizeY);
         void render(int pos_x, int pos_y);
-
+        
         //set focus tile base on tile index , count starting from left to down
         void setFocusTile(int tileIndex);
 
     private:
+        LTexture Texture;
+        std::vector<TilePosition> tilePositions;
+
         int spriteSheetWidth;
         int spriteSheetHeight;
         

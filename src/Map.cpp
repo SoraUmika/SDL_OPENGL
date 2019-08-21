@@ -59,8 +59,8 @@ void Map::render(Camera camera, Player player){
         for(int tileCount=0; tileCount<layers.at(layerCount).tile_data.size(); tileCount++){
             tileIndex = layers.at(layerCount).tile_data[tileCount] - 1;
             if(tileIndex != -1){
-                renderClip = {mapTilesImage.tilePositions.at(tileIndex).x, mapTilesImage.tilePositions.at(tileIndex).y, TILEWIDTH, TILEWIDTH};
-                mapTilesImage.Texture.render(pos_x_counter, pos_y_counter, &renderClip);
+                mapTilesImage.setFocusTile(tileIndex);
+                mapTilesImage.render(pos_x_counter, pos_y_counter);
             }
             pos_x_counter+=TILEWIDTH;
             if(pos_x_counter == TILEWIDTH*layers.at(layerCount).width + mapNewRect.x){
@@ -78,11 +78,6 @@ void Map::renderEntity(SDL_Rect targetRect){
 void Map::setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY){
     playerRect->x = mapRect.x + toX;
     playerRect->y = mapRect.y + toY;
-}
-
-void Map::setMapPos(int x, int y){
-    mapRect.x = x;
-    mapRect.y = y;
 }
 
 SDL_Rect Map::getMapRect(){

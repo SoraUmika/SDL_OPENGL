@@ -30,7 +30,6 @@ class Map: public Root{
         void loadMapFromJson(std::string jsonPath, std::string tileImgPath);
         void render(Camera camera, Player player);
         void renderEntity(SDL_Rect targetRect);
-        void setMapPos(int x, int y);
         void setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY);
         SDL_Rect getMapRect();
         SDL_Rect *getMapRectPtr();
