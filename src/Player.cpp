@@ -49,7 +49,7 @@ void Player::animation(AnimeType animeType){
             playerTiles.setFocusTile(36);
             break;
         case STAND_BY:
-            
+            break;           
     }
 }
 

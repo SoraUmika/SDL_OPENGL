@@ -16,7 +16,7 @@ class LTexture: public Root{
         void setTextureSize(int width, int height);
         void retrieveSize(int *width, int *height);
     private:
-        SDL_Texture* mTexture;
+        SDL_Texture* mTexture = NULL;
 
         void free();
         int mWidth;

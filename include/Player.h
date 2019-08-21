@@ -29,7 +29,6 @@ class Player: public Root, public Sprite{
         void movements(Direction direction);
 
         void animation(AnimeType animeType);
-        int previousTick = 0;
         
         int movementSpeed = 4;
         bool running = false;

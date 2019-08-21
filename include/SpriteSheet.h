@@ -30,7 +30,7 @@ class SpriteSheet{
         SDL_Rect focusedTileClip;
         int tileSizeX;
         int tileSizeY;
-        int indicesPerSet;
+        //int indicesPerSet;
         void parseSheet();
 
 };
