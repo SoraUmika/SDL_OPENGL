@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <utility.h>
+#include <Utility.h>
 #include <Root.h>
 #include <LTexture.h>
 #include <Player.h>
@@ -29,6 +29,7 @@ class Game: public Root{
         void render();
         void keyEvents();
         void cameraEvents();
+        void loadNewMap(std::string mapInfo, std::string mapTiles);
         SDL_Event event;
         AppStatus appStatus = inGame;
 
@@ -39,6 +40,7 @@ class Game: public Root{
         void displayFPS();
 
         //GAME MAJOR OBJECTS
+        std::vector<Map> MapList;
         Map currentMap;
         Canvas canvas;
         Player player;

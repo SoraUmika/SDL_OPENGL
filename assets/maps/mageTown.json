@@ -36,12 +36,33 @@
          "width":50,
          "x":0,
          "y":0
-        }, 
+        },
         {
          "draworder":"topdown",
-         "id":10,
-         "name":"player",
-         "objects":[],
+         "id":3,
+         "name":"ObjectLayer",
+         "objects":[{
+              "height":128,
+              "id":7,
+              "name":"Wall",
+              "rotation":0,
+              "type":"",
+              "visible":true,
+              "width":128,
+              "x":128,
+              "y":128
+              },
+              {
+              "height":128,
+              "id":7,
+              "name":"Wall",
+              "rotation":0,
+              "type":"",
+              "visible":true,
+              "width":128,
+              "x":128,
+              "y":612
+              }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,

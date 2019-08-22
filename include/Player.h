@@ -6,17 +6,20 @@
 #include <LTexture.h>
 #include <Canvas.h>
 #include <SpriteSheet.h>
-#include <utility.h>
+#include <Utility.h>
 #include <Sprite.h>
 #include <Timer.h>
 #include <vector>
 #include <Containers.h>
+
 class Player: public Root, public Sprite{
     public:
         Player(int x = 0, int y = 0, int width = TILESIZE, int heigh = TILESIZE*2);
         void render(SDL_Rect renderRect);
         void events();
 
+        std::vector<Wall>* mapWalls = NULL;
+        bool collide_with_walls(int dx=0, int dy=0);
         void loadSpriteSheet(std::string path);
         SDL_Rect* getRectPtr();
     private:

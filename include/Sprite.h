@@ -13,6 +13,10 @@ class Sprite{
         virtual SDL_Rect getRect(){
             return m_rect;
         }
+        void printRect(){
+            std::cout << "x: " << m_rect.x << " y: " << m_rect.y
+                      << " width: " << m_rect.w << " height: " << m_rect.h << std::endl;
+        }
     protected:
         SDL_Rect m_rect;
         SpriteType m_type;

@@ -14,6 +14,7 @@
 #include <Camera.h>
 #include <Root.h>
 #include <Sprite.h>
+#include <utility>
 using json = nlohmann::json;
 
 struct layer{
@@ -27,32 +28,35 @@ struct layer{
 class Map: public Root{
     public:
         Map();
-        
         void loadMapFromJson(std::string jsonPath, std::string tileImgPath);
-        void render(Camera camera, Player player);
-        void renderEntity(SDL_Rect targetRect);
-        void setPlayerSpawnPoint(SDL_Rect *playerRect, int toX, int toY);
+        void render(Camera* camera, Player* player);
+        void events();
+        
+        void setPlayerSpawnPoint(int toX, int toY);
+        void grantPlayerInfo(Player &player);
         SDL_Rect getMapRect();
-        SDL_Rect *getMapRectPtr();
+
+        void setPlayerAdress(Player *playerMem);
         
     private:
-    
         int TILEWIDTH;
         int WIDTH; //tile_width
         int HEIGHT;  //tile_height
         
         SDL_Rect mapRect; //mapRect in pixels
-        json mapJsonFormat;
         SpriteSheet mapTilesImage;
         std::vector<layer> layers;
 
         Canvas canvas;
 
+        static Player *player;  
+
         //render
         int tileIndex;
         int pos_x_counter;
         int pos_y_counter;
-        std::vector<Wall> WallContainer;
+        std::vector<Wall> MapWalls;
+
         SDL_Rect renderClip;
 };
 

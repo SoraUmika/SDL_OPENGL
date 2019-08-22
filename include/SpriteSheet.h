@@ -6,7 +6,7 @@
 #include <vector>
 #include <SDL.h>
 #include <string>
-#include <utility.h>
+#include <Utility.h>
 struct TilePosition{
     int x;
     int y;

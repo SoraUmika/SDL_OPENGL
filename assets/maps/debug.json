@@ -16,7 +16,7 @@
         {
          "draworder":"topdown",
          "id":3,
-         "name":"WallLayer",
+         "name":"ObjectLayer",
          "objects":[
                 {
                  "height":64,

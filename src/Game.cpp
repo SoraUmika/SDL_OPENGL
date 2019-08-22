@@ -34,20 +34,25 @@ void Game::initGameObject(){
     defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
     fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
     fpsTextTexture.setTextureSize(80, 20);
-
-    currentMap.loadMapFromJson("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
-    currentMap.setPlayerSpawnPoint(player.getRectPtr(), TILESIZE*10, TILESIZE*10);
     
-    player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
+    
+    loadNewMap("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
+    currentMap.setPlayerAdress(&player);
+    currentMap = MapList.at(0);
+    currentMap.setPlayerSpawnPoint(TILESIZE*10, TILESIZE*10);
+    currentMap.grantPlayerInfo(player);
 
+    player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
+
+
 }
 
 void Game::render(){
     setRenderDrawColor(chooseColor(WHITE));
     SDL_RenderClear(gRenderer);
 
-    currentMap.render(camera, player);
+    currentMap.render(&camera, &player);
 
     displayFPS();
     SDL_RenderPresent(gRenderer);
@@ -113,3 +118,9 @@ void Game::displayFPS(){
     fpsCount++;
 }
 
+
+void Game::loadNewMap(std::string mapInfo, std::string mapTiles){
+    Map tmpMap;
+    tmpMap.loadMapFromJson(mapInfo, mapTiles);
+    MapList.push_back(tmpMap);
+}

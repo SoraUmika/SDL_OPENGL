@@ -69,3 +69,12 @@ void Player::loadSpriteSheet(std::string path){
 void Player::render(SDL_Rect renderRect){
     playerTiles.render(renderRect.x, renderRect.y);    
 }
+
+bool Player::collide_with_walls(int dx, int dy){
+    for(int i=0; i<mapWalls->size();i++){
+        if(mapWalls->at(i).getRect().x == m_rect.x + dx && mapWalls->at(i).getRect().y + dy){
+            return true;
+        }
+    }
+    return false;
+}

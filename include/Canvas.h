@@ -4,7 +4,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <Root.h>
-#include <utility.h>
+#include <Utility.h>
 
 class Canvas: public Root{
     public:
