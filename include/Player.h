@@ -14,7 +14,7 @@
 
 class Player: public Root, public Sprite{
     public:
-        Player(int x = 0, int y = 0, int width = TILESIZE, int heigh = TILESIZE*2);
+        Player(int x = 0, int y = 0, int width = TILESIZE, int height = TILESIZE);
         void render(SDL_Rect renderRect);
         void events();
 

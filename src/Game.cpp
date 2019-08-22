@@ -34,15 +34,16 @@ void Game::initGameObject(){
     defaultFont = loadFont("assets/font/ostrich-regular.ttf", 24);
     fpsTextTexture.loadTextTexture(defaultFont, to_string(fpsCount), {0, 0, 0, 255});
     fpsTextTexture.setTextureSize(80, 20);
-    
+
+    //set player memory address so that all map shares this mem address
+    currentMap.setPlayerAdress(&player);
+    player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
     
     loadNewMap("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
-    currentMap.setPlayerAdress(&player);
+    loadNewMap("assets\\maps\\debug.json", "assets\\maps\\Tile_Set\\mageCity.png");
     currentMap = MapList.at(0);
     currentMap.setPlayerSpawnPoint(TILESIZE*10, TILESIZE*10);
     currentMap.grantPlayerInfo(player);
-
-    player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
     camera.init(currentMap.getMapRect().w, currentMap.getMapRect().h);
 
 

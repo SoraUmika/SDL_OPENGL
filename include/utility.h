@@ -18,6 +18,10 @@ int getMinVal(int val1, int val2);
 
 int getMaxVal(int val1, int val2);
 
+bool valueInRange(int value, int min, int max);
+
+bool isCollision(SDL_Rect A, SDL_Rect B);
+
 SDL_Color chooseColor(enumColors color, Uint8 opacity = 255);
 
 TTF_Font* loadFont(std::string path, int fontSize);

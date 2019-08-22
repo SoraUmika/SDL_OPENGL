@@ -1,7 +1,7 @@
 #include <Player.h>
 
-Player::Player(int x, int y, int width, int heigh){
-    m_rect = {x, y, width, heigh};
+Player::Player(int x, int y, int width, int height){
+    m_rect = {x, y, width, height};
     
 }
 
@@ -12,16 +12,24 @@ void Player::events(){
 void Player::keyEvents(){
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     if( currentKeyStates[ SDL_SCANCODE_UP ] ){
-        m_rect.y -= movementSpeed;
+        if(!collide_with_walls(0, -movementSpeed)){
+            m_rect.y -= movementSpeed;
+        }
         animation(MOVE_UP);
     }else if( currentKeyStates[ SDL_SCANCODE_DOWN ] ){
-        m_rect.y += movementSpeed;
+        if(!collide_with_walls(0, movementSpeed)){
+            m_rect.y += movementSpeed;
+        }
         animation(MOVE_DOWN);
     }else if( currentKeyStates[ SDL_SCANCODE_LEFT ] ){
-        m_rect.x -= movementSpeed;
+        if(!collide_with_walls(-movementSpeed, 0)){
+            m_rect.x -= movementSpeed;
+        }
         animation(MOVE_LEFT);
     }else if( currentKeyStates[ SDL_SCANCODE_RIGHT ] ){
-        m_rect.x += movementSpeed;
+        if(!collide_with_walls(movementSpeed, 0)){
+            m_rect.x += movementSpeed;
+        }
         animation(MOVE_RIGHT);
     }
     else if( currentKeyStates[ SDL_SCANCODE_SPACE ]){
@@ -72,7 +80,8 @@ void Player::render(SDL_Rect renderRect){
 
 bool Player::collide_with_walls(int dx, int dy){
     for(int i=0; i<mapWalls->size();i++){
-        if(mapWalls->at(i).getRect().x == m_rect.x + dx && mapWalls->at(i).getRect().y + dy){
+        SDL_Rect playerTempNewRect = {m_rect.x + dx, m_rect.y + dy, m_rect.w, m_rect.h};
+        if(isCollision(playerTempNewRect, mapWalls->at(i).getRect())){
             return true;
         }
     }
