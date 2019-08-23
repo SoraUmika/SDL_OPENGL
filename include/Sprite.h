@@ -40,6 +40,12 @@ class Wall: public Sprite{
 
 };
 
+class Character: public Sprite{
+    
+
+
+};
+
 class Npc: public Sprite{
     public:
         Npc(SDL_Rect rect){

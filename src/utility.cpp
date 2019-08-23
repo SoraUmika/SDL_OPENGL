@@ -48,7 +48,7 @@ int getMaxVal(int val1, int val2){
 }
 
 bool valueInRange(int value, int min, int max){
-    return (value > min) && (value < max); 
+    return (value >= min) && (value <= max); 
 }
 
 bool isCollision(SDL_Rect A, SDL_Rect B){
