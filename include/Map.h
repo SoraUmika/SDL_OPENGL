@@ -36,6 +36,8 @@ class Map: public Root{
         void grantPlayerInfo(Player &player);
         SDL_Rect getMapRect();
 
+        void setMapPosition(int x_pos, int y_pos);
+        void checkMapStatus();
         void setPlayerAdress(Player *playerMem);
         
     private:
@@ -43,9 +45,10 @@ class Map: public Root{
         int WIDTH; //tile_width
         int HEIGHT;  //tile_height
         
-        SDL_Rect mapRect; //mapRect in pixels
+        SDL_Rect m_rect; //mapRect in pixels
         SpriteSheet mapTilesImage;
         std::vector<layer> layers;
+
 
         Canvas canvas;
 

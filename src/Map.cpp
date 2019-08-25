@@ -50,7 +50,7 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
                 }
             }       
         }
-        mapRect = {0, 0, WIDTH*TILEWIDTH, HEIGHT*TILEWIDTH};
+        m_rect = {0, 0, WIDTH*TILEWIDTH, HEIGHT*TILEWIDTH};
         tmpFile.close();
         mapJsonFormat.clear();
     }
@@ -59,7 +59,8 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
 
 
 void Map::render(Camera* camera, Player* player){
-    SDL_Rect mapNewRect = camera->apply(mapRect);
+
+    SDL_Rect mapNewRect = camera->apply(m_rect);
     for(int layerCount=0; layerCount<layers.size(); layerCount++){
             pos_x_counter = mapNewRect.x;
             pos_y_counter = mapNewRect.y;  
@@ -92,12 +93,12 @@ void Map::events(){
 }
 
 void Map::setPlayerSpawnPoint(int toX, int toY){
-    player->getRectPtr()->x = mapRect.x + toX;
-    player->getRectPtr()->y = mapRect.y + toY;
+    player->getRectPtr()->x = m_rect.x + toX;
+    player->getRectPtr()->y = m_rect.y + toY;
 }
 
 SDL_Rect Map::getMapRect(){
-    return mapRect;
+    return m_rect;
 }
 
 
@@ -107,4 +108,9 @@ void Map::grantPlayerInfo(Player &player){
 
 void Map::setPlayerAdress(Player *playerMem){
     player = playerMem;
+}
+
+void Map::setMapPosition(int x_pos, int y_pos){
+    m_rect.x = x_pos;
+    m_rect.y = y_pos;
 }

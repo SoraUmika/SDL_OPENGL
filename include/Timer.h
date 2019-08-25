@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <vector>
 #include <string>
+#include <Containers.h>
 class simpleTimer{
     public:
         bool checkTimePassed(int interval){
@@ -37,5 +38,7 @@ class dynamicTimer: public simpleTimer{
         std::string m_name;
 };
 
-
+class returnTimer: public simpleTimer{
+    
+};
 #endif

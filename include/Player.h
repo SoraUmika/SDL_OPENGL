@@ -30,8 +30,19 @@ class Player: public Root, public Sprite{
         void canvas();
         void keyEvents();
 
+        ControlledVector<int> moveDownIndices;
+        ControlledVector<int> moveLeftIndices;
+        ControlledVector<int> moveRightIndices;
+        ControlledVector<int> moveUpIndices;
+        dynamicTimer moveDownTimer;
+        dynamicTimer moveLeftTimer;
+        dynamicTimer moveRightTimer;
+        dynamicTimer moveUpTimer;
+
+        int timerWaitTime = 200;
         void animation(AnimeType animeType);
-        Specicialized_V<int> run;
+
+        Direction previousMove;
         int movementSpeed = 4;
         bool running = false;
 

@@ -50,11 +50,10 @@ void Game::initGameObject(){
 }
 
 void Game::render(){
-    setRenderDrawColor(chooseColor(WHITE));
+    setRenderDrawColor(chooseColor(BLACK));
     SDL_RenderClear(gRenderer);
 
     currentMap.render(&camera, &player);
-
     displayFPS();
     SDL_RenderPresent(gRenderer);
 }
@@ -62,12 +61,26 @@ void Game::render(){
 void Game::mainLoop(){
     render();
     keyEvents();
+    mapEvents();
     cameraEvents();
+}
+
+void Game::mapEvents(){
+    switch(currentMapName){
+        case mageCity:
+            camera.init(MapList.at(0).getMapRect().w, MapList.at(0).getMapRect().h);
+            currentMap = MapList.at(0);
+            break;
+        case caveTown:
+            camera.init(MapList.at(1).getMapRect().w, MapList.at(1).getMapRect().h);
+            currentMap = MapList.at(1);
+            currentMap.setMapPosition(-200, -100);
+            break;    
+    }
 }
 
 void Game::keyEvents(){
     player.events();
-    
     while( SDL_PollEvent(&event) != 0 ){
         
         switch(appStatus){
@@ -91,6 +104,11 @@ void Game::keyEvents(){
                 case SDLK_F4 && SDLK_LALT:
                     close();
                     break;
+                case SDLK_1:
+                    currentMapName = caveTown;
+                    break;
+                case SDLK_2:
+                    currentMapName = mageCity;
             }
         }
     }

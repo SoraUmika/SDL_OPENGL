@@ -16,6 +16,7 @@
 #include <TestClass.h>
 
 enum AppStatus{inGame, inMainMenu, inSettings, inExit, inPause};
+enum mapName{mageCity, caveTown};
 
 class Game: public Root{
     public:
@@ -28,6 +29,7 @@ class Game: public Root{
     private:
         void render();
         void keyEvents();
+        void mapEvents();
         void cameraEvents();
         void loadNewMap(std::string mapInfo, std::string mapTiles);
         SDL_Event event;
@@ -46,6 +48,7 @@ class Game: public Root{
         Player player;
         Camera camera;
         
+        mapName currentMapName = mageCity;
         //INITIALIZE GAME OBJECT
         void initGameObject();
         simpleTimer m_timer;

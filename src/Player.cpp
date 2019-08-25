@@ -2,7 +2,10 @@
 
 Player::Player(int x, int y, int width, int height){
     m_rect = {x, y, width, height};
-    
+    moveDownIndices.setVector({0, 1, 2});
+    moveLeftIndices.setVector({12, 13, 14});
+    moveRightIndices.setVector({24, 25, 26});
+    moveUpIndices.setVector({36, 37, 38});
 }
 
 void Player::events(){
@@ -19,7 +22,7 @@ void Player::keyEvents(){
     }else if( currentKeyStates[ SDL_SCANCODE_DOWN ] ){
         if(!collide_with_walls(0, movementSpeed)){
             m_rect.y += movementSpeed;
-        }
+        }   
         animation(MOVE_DOWN);
     }else if( currentKeyStates[ SDL_SCANCODE_LEFT ] ){
         if(!collide_with_walls(-movementSpeed, 0)){
@@ -31,36 +34,51 @@ void Player::keyEvents(){
             m_rect.x += movementSpeed;
         }
         animation(MOVE_RIGHT);
+    }else{
+        animation(STAND_BY);
     }
-    else if( currentKeyStates[ SDL_SCANCODE_SPACE ]){
+    if( currentKeyStates[ SDL_SCANCODE_SPACE ]){
         std::cout << m_rect.x << " :" << m_rect.y << " :" << std::endl;
     }
     if( currentKeyStates[ SDL_SCANCODE_X ]){
+        timerWaitTime = 100;
         movementSpeed = 4;
     }else{
         movementSpeed = 2;
+        timerWaitTime = 200;
     }
-
 }
 
 void Player::animation(AnimeType animeType){
     switch(animeType){
         case MOVE_DOWN:
-            playerTiles.setFocusTile(0);
+            previousMove = DOWN;
+            if(moveDownTimer.checkTimePassed(timerWaitTime)){
+                playerTiles.setFocusTile(moveDownIndices.next());
+            }
             break;
         case MOVE_LEFT:
-            playerTiles.setFocusTile(12);
+            previousMove = LEFT;
+            if(moveLeftTimer.checkTimePassed(timerWaitTime)){
+                playerTiles.setFocusTile(moveLeftIndices.next());
+            }
             break;
         case MOVE_RIGHT:
-            playerTiles.setFocusTile(24);
+            previousMove = RIGHT;
+            if(moveRightTimer.checkTimePassed(timerWaitTime)){
+                playerTiles.setFocusTile(moveRightIndices.next());        
+            }
             break;
         case MOVE_UP:
-            playerTiles.setFocusTile(36);
+            previousMove = UP;
+            if(moveUpTimer.checkTimePassed(timerWaitTime)){
+                playerTiles.setFocusTile(moveUpIndices.next());
+            }
             break;
         case STAND_BY:
             break;           
     }
-}
+}   
 
 SDL_Rect* Player::getRectPtr(){
     return &m_rect;
