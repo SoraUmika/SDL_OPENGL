@@ -24,7 +24,6 @@ class Player: public Root, public Sprite{
         SDL_Rect* getRectPtr();
     private:
 
-        SDL_Rect camRect;
         SpriteSheet playerTiles; 
         Canvas pCanvas; 
         void canvas();

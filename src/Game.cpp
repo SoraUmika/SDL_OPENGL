@@ -122,6 +122,9 @@ void Game::close(){
     exit_status = true;
     SDL_DestroyRenderer(gRenderer);
     SDL_DestroyWindow(gWindow);
+    gRenderer = NULL;
+    gWindow = NULL;
+    IMG_Quit();
     SDL_Quit();
 }
 
