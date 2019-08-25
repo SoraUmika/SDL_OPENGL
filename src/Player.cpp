@@ -89,7 +89,7 @@ void Player::canvas(){
 }
 
 void Player::loadSpriteSheet(std::string path){
-    playerTiles.loadSheet(path, 32, 32);
+    playerTiles.loadSheet(path, 32, 48);
 }
 
 void Player::render(SDL_Rect renderRect){

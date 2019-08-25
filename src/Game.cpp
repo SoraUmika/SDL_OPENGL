@@ -37,7 +37,7 @@ void Game::initGameObject(){
 
     //set player memory address so that all map shares this mem address
     currentMap.setPlayerAdress(&player);
-    player.loadSpriteSheet("assets\\spriteSheet\\characters\\characterList.png");
+    player.loadSpriteSheet("assets\\spriteSheet\\characters\\character.png");
     
     loadNewMap("assets\\maps\\mageTown.json", "assets\\maps\\Tile_Set\\mageCity.png");
     loadNewMap("assets\\maps\\debug.json", "assets\\maps\\Tile_Set\\mageCity.png");
