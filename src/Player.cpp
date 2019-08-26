@@ -76,7 +76,19 @@ void Player::animation(AnimeType animeType){
             }
             break;
         case STAND_BY:
-            break;           
+            switch(previousMove){
+                case DOWN:
+                    playerTiles.setFocusTile(1);
+                    break;
+                case LEFT:
+                    playerTiles.setFocusTile(13);
+                    break;
+                case RIGHT:
+                    playerTiles.setFocusTile(25);
+                    break;
+                case UP:
+                    playerTiles.setFocusTile(37);
+            }           
     }
 }   
 
@@ -93,7 +105,7 @@ void Player::loadSpriteSheet(std::string path){
 }
 
 void Player::render(SDL_Rect renderRect){
-    playerTiles.render(renderRect.x, renderRect.y);    
+    playerTiles.render(renderRect.x, renderRect.y-16);    
 }
 
 bool Player::collide_with_walls(int dx, int dy){

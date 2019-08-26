@@ -25,6 +25,11 @@ struct layer{
     std::vector<int> tile_data;
 };
 
+struct tp_info{
+    std::string map_name;
+    SDL_Rect tp_rect;
+};
+
 class Map: public Root{
     public:
         Map();
@@ -39,7 +44,7 @@ class Map: public Root{
         void setMapPosition(int x_pos, int y_pos);
         void checkMapStatus();
         void setPlayerAdress(Player *playerMem);
-        
+        void changeMap();
     private:
         int TILEWIDTH;
         int WIDTH; //tile_width
@@ -59,6 +64,7 @@ class Map: public Root{
         int pos_x_counter;
         int pos_y_counter;
         std::vector<Wall> MapWalls;
+        std::vector<tp_info> tp_list;
 
         SDL_Rect renderClip;
 };

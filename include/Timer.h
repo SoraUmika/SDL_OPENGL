@@ -34,7 +34,6 @@ class dynamicTimer: public simpleTimer{
             return m_name;
         }
     private:    
-        int m_timeTicks = 0;
         std::string m_name;
 };
 

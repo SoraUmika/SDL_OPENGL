@@ -7,6 +7,8 @@
 #include <string>
 #include <iostream>
 
+enum mapName{mageCity, caveTown, debug};
+
 class Root{
     public:
         Root();

@@ -16,7 +16,6 @@
 #include <TestClass.h>
 
 enum AppStatus{inGame, inMainMenu, inSettings, inExit, inPause};
-enum mapName{mageCity, caveTown};
 
 class Game: public Root{
     public:

@@ -42,6 +42,16 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
                                     Wall tmpWall({it.value().at(objCount)["x"], it.value().at(objCount)["y"],
                                         it.value().at(objCount)["width"], it.value().at(objCount)["height"]}); 
                                     MapWalls.push_back(tmpWall);
+                                }else if(it.value().at(objCount)["type"] == "teleport"){
+                                    tp_info tmpInfo;
+                                    tmpInfo.map_name = it.value().at(objCount)["name"];
+                                    tmpInfo.tp_rect = {
+                                        it.value().at(objCount)["x"],
+                                        it.value().at(objCount)["y"],
+                                        it.value().at(objCount)["width"],
+                                        it.value().at(objCount)["height"]
+                                    };
+                                    tp_list.push_back(tmpInfo);
                                 }
                             }
                         }
@@ -53,8 +63,8 @@ void Map::loadMapFromJson(std::string jsonPath, std::string tileImgPath){
         m_rect = {0, 0, WIDTH*TILEWIDTH, HEIGHT*TILEWIDTH};
         tmpFile.close();
         mapJsonFormat.clear();
+        mapTilesImage.loadSheet(tileImgPath, TILEWIDTH, TILEWIDTH);
     }
-    mapTilesImage.loadSheet(tileImgPath, TILEWIDTH, TILEWIDTH);
 }
 
 
